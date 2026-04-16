@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: codice-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: codice
+      POSTGRES_PASSWORD: codice_dev
+      POSTGRES_DB: codice
+    ports:
+      - "5432:5432"
+    volumes:
+      - codice_pgdata:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U codice -d codice"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  adminer:
+    image: adminer:latest
+    container_name: codice-adminer
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  codice_pgdata:
+    name: codice_pgdata
