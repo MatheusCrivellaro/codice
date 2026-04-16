@@ -1,0 +1,56 @@
+### Registrar usuario
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "email": "leitor@codice.com.br",
+  "password": "senha1234",
+  "name": "Leitor Teste",
+  "profileType": "BUYER",
+  "acceptedPrivacyPolicy": true
+}
+
+> {%
+    client.global.set("auth_token", response.body.token);
+%}
+
+### Login
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "leitor@codice.com.br",
+  "password": "senha1234"
+}
+
+> {%
+    client.global.set("auth_token", response.body.token);
+%}
+
+### Consultar perfil autenticado
+GET http://localhost:8080/me
+Authorization: Bearer {{auth_token}}
+
+### Consultar /me sem token (deve retornar 401)
+GET http://localhost:8080/me
+
+### Registrar com email duplicado (deve retornar 409)
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "email": "leitor@codice.com.br",
+  "password": "outrasenha1",
+  "name": "Outro Leitor",
+  "profileType": "BUYER",
+  "acceptedPrivacyPolicy": true
+}
+
+### Login com senha errada (deve retornar 401)
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "leitor@codice.com.br",
+  "password": "senhaerrada"
+}
