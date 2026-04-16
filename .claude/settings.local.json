@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./mvnw compile:*)",
+      "Bash(docker compose:*)",
+      "Bash(timeout 30 ./mvnw spring-boot:run)",
+      "Bash(PGPASSWORD=codice_dev psql:*)",
+      "Bash(docker exec codice-postgres:*)",
+      "Bash(curl:*)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill:*)",
+      "Bash(./mvnw spring-boot:run)",
+      "Bash(break)",
+      "Bash(./mvnw spring-boot:run -q)",
+      "Bash(npm install:*)",
+      "Bash(npx shadcn@latest add form sonner radio-group avatar checkbox dialog --yes)",
+      "Bash(npx shadcn@latest add form --yes --overwrite)",
+      "Bash(npx shadcn@latest add label --yes)",
+      "Bash(npx tsc:*)",
+      "Bash(npm ls:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
