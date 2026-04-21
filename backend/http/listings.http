@@ -1,0 +1,140 @@
+### Setup perfil de seller (BOOKSTORE) - precisa de token de user BOOKSTORE
+POST http://localhost:8080/sellers/profile
+Content-Type: application/json
+Authorization: Bearer {{bookstore_token}}
+
+{
+  "publicName": "Sebo da Esquina",
+  "description": "Sebo especializado em livros academicos e classicos da literatura brasileira.",
+  "city": "Sao Paulo",
+  "state": "SP",
+  "neighborhood": "Vila Madalena"
+}
+
+### Ver perfil de seller do user logado
+GET http://localhost:8080/sellers/me
+Authorization: Bearer {{bookstore_token}}
+
+### Criar listing via ISBN (INDIVIDUAL_SELLER - auto-provision de seller)
+POST http://localhost:8080/listings
+Content-Type: application/json
+Authorization: Bearer {{individual_token}}
+
+{
+  "isbn": "9788535911725",
+  "priceCents": 4500,
+  "condition": "BOM",
+  "conditionNotes": "Capa com leve desgaste nas bordas",
+  "description": "Edicao classica da Companhia das Letras, excelente para estudo.",
+  "photos": [
+    {
+      "url": "https://example.com/foto-capa.jpg",
+      "position": 0,
+      "photoType": "COVER_FRONT"
+    },
+    {
+      "url": "https://example.com/foto-lombada.jpg",
+      "position": 1,
+      "photoType": "SPINE_BACK"
+    }
+  ]
+}
+
+### Criar listing manual (sem ISBN)
+POST http://localhost:8080/listings
+Content-Type: application/json
+Authorization: Bearer {{bookstore_token}}
+
+{
+  "manualBookData": {
+    "title": "Introducao a Analise Real",
+    "authors": "Elon Lages Lima",
+    "publisher": "IMPA",
+    "publicationYear": 2000,
+    "language": "pt-BR",
+    "academicAreas": ["Matematica", "Analise"]
+  },
+  "priceCents": 8000,
+  "condition": "COMO_NOVO",
+  "description": "Livro em otimo estado, sem anotacoes.",
+  "photos": [
+    {
+      "url": "https://example.com/analise-real-capa.jpg",
+      "position": 0,
+      "photoType": "COVER_FRONT"
+    }
+  ]
+}
+
+### Listar meus anuncios
+GET http://localhost:8080/listings/mine
+Authorization: Bearer {{individual_token}}
+
+### BUYER tentando criar listing (esperado: 403)
+POST http://localhost:8080/listings
+Content-Type: application/json
+Authorization: Bearer {{buyer_token}}
+
+{
+  "isbn": "9788535911725",
+  "priceCents": 3000,
+  "condition": "BOM",
+  "photos": [
+    {
+      "url": "https://example.com/foto.jpg",
+      "position": 0,
+      "photoType": "COVER_FRONT"
+    }
+  ]
+}
+
+### Busca fuzzy de books
+GET http://localhost:8080/books/search/fuzzy?title=Memorias%20Postumas
+
+### Listing com 0 fotos (esperado: 400)
+POST http://localhost:8080/listings
+Content-Type: application/json
+Authorization: Bearer {{individual_token}}
+
+{
+  "isbn": "9788535911725",
+  "priceCents": 3000,
+  "condition": "BOM",
+  "photos": []
+}
+
+### Listing com preco < 100 (esperado: 400)
+POST http://localhost:8080/listings
+Content-Type: application/json
+Authorization: Bearer {{individual_token}}
+
+{
+  "isbn": "9788535911725",
+  "priceCents": 50,
+  "condition": "BOM",
+  "photos": [
+    {
+      "url": "https://example.com/foto.jpg",
+      "position": 0,
+      "photoType": "COVER_FRONT"
+    }
+  ]
+}
+
+### Listing com condition invalida (esperado: 400)
+POST http://localhost:8080/listings
+Content-Type: application/json
+Authorization: Bearer {{individual_token}}
+
+{
+  "isbn": "9788535911725",
+  "priceCents": 3000,
+  "condition": "INVALIDO",
+  "photos": [
+    {
+      "url": "https://example.com/foto.jpg",
+      "position": 0,
+      "photoType": "COVER_FRONT"
+    }
+  ]
+}

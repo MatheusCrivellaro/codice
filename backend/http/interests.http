@@ -1,0 +1,57 @@
+### Manifestar interesse (buyer)
+POST http://localhost:8080/interests
+Authorization: Bearer {{token_buyer}}
+Content-Type: application/json
+
+{
+  "listingId": "{{listing_id}}",
+  "message": "Ola, o livro ainda esta disponivel? Consigo retirar na Vila Madalena."
+}
+
+### Listar minhas conversas (buyer)
+GET http://localhost:8080/interests/threads?page=0&size=10
+Authorization: Bearer {{token_buyer}}
+
+### Ver mensagens de uma thread
+GET http://localhost:8080/interests/threads/{{thread_id}}/messages?page=0&size=50
+Authorization: Bearer {{token_buyer}}
+
+### Seller responde
+POST http://localhost:8080/interests/threads/{{thread_id}}/messages
+Authorization: Bearer {{token_seller}}
+Content-Type: application/json
+
+{
+  "content": "Sim, esta disponivel. Posso encontrar na estacao Vila Madalena amanha as 18h."
+}
+
+### Contagem de nao lidas (seller deve ter 1 nao lida agora)
+GET http://localhost:8080/interests/unread-count
+Authorization: Bearer {{token_seller}}
+
+### Ler mensagens (seller) — marca como lida
+GET http://localhost:8080/interests/threads/{{thread_id}}/messages
+Authorization: Bearer {{token_seller}}
+
+### Contagem agora deve ser 0
+GET http://localhost:8080/interests/unread-count
+Authorization: Bearer {{token_seller}}
+
+### Tentar interesse no proprio listing (esperar 400)
+POST http://localhost:8080/interests
+Authorization: Bearer {{token_seller}}
+Content-Type: application/json
+
+{
+  "listingId": "{{own_listing_id}}",
+  "message": "teste"
+}
+
+### Tentar mensagem em thread alheia (esperar 403)
+POST http://localhost:8080/interests/threads/{{thread_id}}/messages
+Authorization: Bearer {{token_outro_user}}
+Content-Type: application/json
+
+{
+  "content": "intruso"
+}

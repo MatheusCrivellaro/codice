@@ -7,6 +7,7 @@ export interface User {
     email: string
     name: string
     profileType: ProfileType
+    isAdmin: boolean
 }
 
 export interface AuthResponse {

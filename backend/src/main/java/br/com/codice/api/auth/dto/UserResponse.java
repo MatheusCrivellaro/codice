@@ -9,14 +9,16 @@ public record UserResponse(
         UUID id,
         String email,
         String name,
-        ProfileType profileType
+        ProfileType profileType,
+        boolean isAdmin
 ) {
     public static UserResponse fromUser(User user) {
         return new UserResponse(
                 user.getId(),
                 user.getEmail(),
                 user.getName(),
-                user.getProfileType()
+                user.getProfileType(),
+                user.isAdmin()
         );
     }
 }

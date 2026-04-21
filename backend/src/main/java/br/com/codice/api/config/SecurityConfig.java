@@ -39,7 +39,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/actuator/**", "/auth/register", "/auth/login").permitAll()
                         .requestMatchers("/books/**").permitAll()
-                        .requestMatchers("/admin/**").permitAll()
+                        .requestMatchers("/lookup/**").permitAll()
+                        .requestMatchers("/admin/bootstrap").permitAll()
+                        .requestMatchers("/sellers/active-states").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)

@@ -2,13 +2,8 @@ import { useAuth } from '@/contexts/auth-context'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import type { ProfileType } from '@/api/auth'
-
-const PROFILE_LABELS: Record<ProfileType, string> = {
-    BUYER: 'Comprador(a)',
-    BOOKSTORE: 'Sebo',
-    INDIVIDUAL_SELLER: 'Vendedor(a)',
-}
+import { formatProfileType } from '@/lib/format'
+import { usePageTitle } from '@/hooks/usePageTitle'
 
 function getInitials(name: string): string {
     return name
@@ -20,36 +15,35 @@ function getInitials(name: string): string {
 }
 
 export function PerfilPage() {
+    usePageTitle('Meu perfil')
     const { user, logout } = useAuth()
 
     if (!user) return null
 
     return (
-        <div className="flex min-h-[80vh] items-center justify-center px-4">
-            <Card className="w-full max-w-sm">
+        <div className="container-codice flex min-h-[60vh] items-center justify-center py-12">
+            <Card className="w-full max-w-[480px]">
                 <CardHeader className="items-center text-center">
-                    <Avatar size="lg" className="mb-2">
-                        <AvatarFallback className="bg-[#7A2E2E] text-white">
+                    <Avatar className="mb-3 size-20 bg-papel-profundo">
+                        <AvatarFallback className="bg-papel-profundo font-display text-[28px] font-normal text-bordo">
                             {getInitials(user.name)}
                         </AvatarFallback>
                     </Avatar>
-                    <CardTitle className="font-serif text-xl text-[#2A2420]">
-                        {user.name}
-                    </CardTitle>
+                    <CardTitle className="text-2xl">{user.name}</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                    <div className="space-y-2 text-sm">
+                <CardContent className="space-y-5">
+                    <div className="space-y-2 font-ui text-sm">
                         <div className="flex justify-between">
-                            <span className="text-[#2A2420]/60">E-mail</span>
-                            <span className="text-[#2A2420]">{user.email}</span>
+                            <span className="text-cinza-quente">E-mail</span>
+                            <span className="text-tinta">{user.email}</span>
                         </div>
                         <div className="flex justify-between">
-                            <span className="text-[#2A2420]/60">Perfil</span>
-                            <span className="text-[#2A2420]">{PROFILE_LABELS[user.profileType]}</span>
+                            <span className="text-cinza-quente">Perfil</span>
+                            <span className="text-tinta">{formatProfileType(user.profileType)}</span>
                         </div>
                     </div>
 
-                    <Button variant="outline" className="w-full" onClick={logout}>
+                    <Button variant="outline" onClick={logout}>
                         Sair
                     </Button>
                 </CardContent>

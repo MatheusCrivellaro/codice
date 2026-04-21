@@ -34,6 +34,7 @@ public class JwtService {
                 .subject(user.getId().toString())
                 .claim("email", user.getEmail())
                 .claim("profileType", user.getProfileType().name())
+                .claim("isAdmin", user.isAdmin())
                 .issuedAt(now)
                 .expiration(expiration)
                 .signWith(key)
@@ -52,6 +53,12 @@ public class JwtService {
         } catch (JwtException | IllegalArgumentException e) {
             return false;
         }
+    }
+
+    public boolean isAdmin(String token) {
+        Claims claims = parseToken(token);
+        Boolean admin = claims.get("isAdmin", Boolean.class);
+        return admin != null && admin;
     }
 
     public long getExpirationSeconds() {

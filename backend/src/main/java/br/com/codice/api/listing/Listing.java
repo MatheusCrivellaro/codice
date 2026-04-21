@@ -56,6 +56,9 @@ public class Listing {
     @Column(nullable = false, length = 20)
     private ListingStatus status = ListingStatus.PENDING_REVIEW;
 
+    @Column(name = "moderation_note", columnDefinition = "text")
+    private String moderationNote;
+
     @Column(name = "published_at")
     private OffsetDateTime publishedAt;
 
@@ -158,6 +161,14 @@ public class Listing {
 
     public void setUpdatedAt(OffsetDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getModerationNote() {
+        return moderationNote;
+    }
+
+    public void setModerationNote(String moderationNote) {
+        this.moderationNote = moderationNote;
     }
 
     public List<ListingPhoto> getPhotos() {

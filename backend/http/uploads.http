@@ -1,0 +1,39 @@
+### Gerar presigned URL
+POST http://localhost:8080/uploads/presign
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "filename": "capa-frontal.jpg",
+  "contentType": "image/jpeg"
+}
+
+### Gerar batch de presigned URLs
+POST http://localhost:8080/uploads/presign-batch
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+[
+  { "filename": "capa.jpg", "contentType": "image/jpeg" },
+  { "filename": "lombada.jpg", "contentType": "image/jpeg" },
+  { "filename": "detalhe.png", "contentType": "image/png" }
+]
+
+### Content type invalido (deve retornar 400)
+POST http://localhost:8080/uploads/presign
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "filename": "arquivo.gif",
+  "contentType": "image/gif"
+}
+
+### Sem auth (deve retornar 401)
+POST http://localhost:8080/uploads/presign
+Content-Type: application/json
+
+{
+  "filename": "capa.jpg",
+  "contentType": "image/jpeg"
+}

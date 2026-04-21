@@ -18,10 +18,17 @@ Identidade bibliófila, calma e premium.
 
 ## Status
 
-Em desenvolvimento — Fase 0 (Fundação Técnica).
+MVP (Fase 0 + Fase 1) — em deploy.
 
 ## Como rodar
 
 Instruções por subprojeto:
 - [Backend](./backend/README.md) _(em breve)_
 - [Frontend](./frontend/README.md) _(em breve)_
+
+## Produção
+
+- **Frontend:** https://codice.com.br (Vercel)
+- **API:** https://api.codice.com.br (Railway)
+
+Ver [docs/deploy-vercel.md](./docs/deploy-vercel.md) e [docs/deploy-railway.md](./docs/deploy-railway.md) para setup de deploy.

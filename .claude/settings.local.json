@@ -27,7 +27,18 @@
       "Read(//tmp/**)",
       "Bash(python3 -m json.tool)",
       "Bash(pkill -f \"spring-boot:run\")",
-      "Bash(fuser -k 8080/tcp)"
+      "Bash(fuser -k 8080/tcp)",
+      "Bash(npx shadcn@latest add table badge textarea tabs -y)",
+      "Bash(npx vite *)",
+      "Bash(python3 *)",
+      "Bash(npx shadcn@latest add select separator skeleton alert -y)",
+      "Bash(npx shadcn@latest add tooltip -y)",
+      "Bash(npx shadcn@latest add scroll-area -y)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(./mvnw -q -o compile)",
+      "Bash(pdftotext /c/Users/mathe/dev/codice/docs/Codice_Documento_Mestre.pdf /tmp/mestre.txt)",
+      "Bash(./mvnw -q -pl . compile -DskipTests)",
+      "Bash(./mvnw clean *)"
     ]
   }
 }

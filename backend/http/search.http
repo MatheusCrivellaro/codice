@@ -1,0 +1,32 @@
+### Full-text search
+GET http://localhost:8080/books/search?q=machado
+
+### Multi-word full-text
+GET http://localhost:8080/books/search?q=memorias+postumas
+
+### Full-text + area filter
+GET http://localhost:8080/books/search?q=filosofia&area=Filosofia
+
+### Area filter only (no query)
+GET http://localhost:8080/books/search?area=Literatura+Brasileira
+
+### Price filter + sort
+GET http://localhost:8080/books/search?priceMax=5000&sort=price_asc
+
+### State filter
+GET http://localhost:8080/books/search?state=SP
+
+### No results (fuzzy fallback)
+GET http://localhost:8080/books/search?q=xyznonexistent
+
+### No filters (list all)
+GET http://localhost:8080/books/search
+
+### Book detail with offers
+GET http://localhost:8080/books/memorias-postumas-de-bras-cubas
+
+### Academic areas
+GET http://localhost:8080/books/academic-areas
+
+### Active seller states
+GET http://localhost:8080/sellers/active-states

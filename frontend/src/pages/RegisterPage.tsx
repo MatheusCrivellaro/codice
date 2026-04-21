@@ -20,26 +20,28 @@ import {
     DialogDescription,
     DialogTrigger,
 } from '@/components/ui/dialog'
+import { usePageTitle } from '@/hooks/usePageTitle'
 
 const PROFILE_OPTIONS = [
     {
         value: 'BUYER' as const,
-        label: 'Comprador(a)',
-        description: 'Quero levar livros pra casa',
+        label: 'Quero encontrar livros',
+        description: 'Navegar, buscar e levar livros pra casa',
     },
     {
         value: 'BOOKSTORE' as const,
-        label: 'Sebo',
-        description: 'Sou de um sebo',
+        label: 'Represento um sebo',
+        description: 'Anunciar e gerenciar o acervo do meu sebo',
     },
     {
         value: 'INDIVIDUAL_SELLER' as const,
-        label: 'Vendedor(a)',
-        description: 'Vou anunciar livros pessoalmente',
+        label: 'Quero anunciar meus livros',
+        description: 'Desencalhar a estante, vender exemplares pessoais',
     },
 ]
 
 export function RegisterPage() {
+    usePageTitle('Criar conta')
     const { register: registerUser } = useAuth()
     const navigate = useNavigate()
     const [privacyOpen, setPrivacyOpen] = useState(false)
@@ -60,7 +62,7 @@ export function RegisterPage() {
         } catch (err) {
             const status = (err as ApiError).status
             if (status === 409) {
-                toast.error('Este e-mail já está cadastrado.')
+                toast.error('Este e-mail já está em uma conta.')
             } else {
                 toast.error('Erro ao criar conta. Tente novamente.')
             }
@@ -68,13 +70,13 @@ export function RegisterPage() {
     }
 
     return (
-        <div className="flex min-h-[80vh] items-center justify-center px-4 py-8">
-            <Card className="w-full max-w-md">
+        <div className="container-codice flex min-h-[60vh] items-center justify-center py-12">
+            <Card className="w-full max-w-lg">
                 <CardHeader>
-                    <CardTitle className="font-serif text-xl text-[#2A2420]">
+                    <CardTitle className="font-display text-2xl text-tinta">
                         Criar uma conta
                     </CardTitle>
-                    <CardDescription>
+                    <CardDescription className="font-body">
                         Junte-se ao acervo. Escolha como deseja participar.
                     </CardDescription>
                 </CardHeader>
@@ -110,7 +112,7 @@ export function RegisterPage() {
                             <Input
                                 id="password"
                                 type="password"
-                                placeholder="No mínimo 8 caracteres"
+                                placeholder="Ao menos 8 caracteres"
                                 {...register('password')}
                             />
                             {errors.password && (
@@ -131,14 +133,14 @@ export function RegisterPage() {
                                         {PROFILE_OPTIONS.map((option) => (
                                             <label
                                                 key={option.value}
-                                                className="flex cursor-pointer items-start gap-3 rounded-lg border border-[#2A2420]/10 p-3 hover:bg-[#EFE8DA]/50"
+                                                className="flex cursor-pointer items-start gap-3 rounded-md border border-cinza-borda p-3 hover:bg-papel-profundo/60"
                                             >
                                                 <RadioGroupItem value={option.value} className="mt-0.5" />
                                                 <div>
-                                                    <p className="text-sm font-medium text-[#2A2420]">
+                                                    <p className="font-ui text-sm font-medium text-tinta">
                                                         {option.label}
                                                     </p>
-                                                    <p className="text-xs text-[#2A2420]/60">
+                                                    <p className="font-ui text-xs text-tinta-leve">
                                                         {option.description}
                                                     </p>
                                                 </div>
@@ -166,15 +168,15 @@ export function RegisterPage() {
                                         />
                                     )}
                                 />
-                                <Label htmlFor="privacy" className="text-sm font-normal leading-snug text-[#2A2420]/80">
+                                <Label htmlFor="privacy" className="font-ui text-sm font-normal leading-snug text-tinta">
                                     Li e concordo com a{' '}
                                     <Dialog open={privacyOpen} onOpenChange={setPrivacyOpen}>
                                         <DialogTrigger asChild>
                                             <button
                                                 type="button"
-                                                className="text-[#7A2E2E] underline underline-offset-2 hover:no-underline"
+                                                className="text-bordo underline underline-offset-2 hover:no-underline"
                                             >
-                                                política de privacidade
+                                                política de privacidade do Códice
                                             </button>
                                         </DialogTrigger>
                                         <DialogContent>
@@ -184,7 +186,7 @@ export function RegisterPage() {
                                                     Última atualização: em breve
                                                 </DialogDescription>
                                             </DialogHeader>
-                                            <div className="space-y-3 text-sm text-[#2A2420]/80">
+                                            <div className="space-y-3 font-body text-sm text-tinta">
                                                 <p>
                                                     O Códice coleta apenas os dados necessários para o funcionamento
                                                     do marketplace: nome, e-mail e tipo de perfil. Suas informações
@@ -198,7 +200,7 @@ export function RegisterPage() {
                                             </div>
                                         </DialogContent>
                                     </Dialog>
-                                    {' '}do Códice.
+                                    .
                                 </Label>
                             </div>
                             {errors.acceptedPrivacyPolicy && (
@@ -210,9 +212,9 @@ export function RegisterPage() {
                             {isSubmitting ? 'Criando conta...' : 'Criar conta'}
                         </Button>
 
-                        <p className="text-center text-sm text-[#2A2420]/60">
+                        <p className="text-center font-ui text-sm text-tinta-leve">
                             Já tem conta?{' '}
-                            <Link to="/login" className="text-[#7A2E2E] hover:underline">
+                            <Link to="/login" className="text-bordo hover:underline">
                                 Entrar.
                             </Link>
                         </p>

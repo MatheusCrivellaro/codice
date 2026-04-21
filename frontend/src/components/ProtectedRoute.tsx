@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom'
+﻿import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { useAuth } from '@/contexts/auth-context'
 
 export function ProtectedRoute() {
@@ -8,7 +8,7 @@ export function ProtectedRoute() {
     if (isLoading) {
         return (
             <div className="flex min-h-[50vh] items-center justify-center">
-                <p className="text-sm text-[#2A2420]/60">Carregando...</p>
+                <p className="text-sm text-tinta-leve">Carregando...</p>
             </div>
         )
     }

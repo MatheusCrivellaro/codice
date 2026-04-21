@@ -58,6 +58,9 @@ public class Book {
     @Column(name = "cover_image_url", length = 500)
     private String coverImageUrl;
 
+    @Column(name = "search_vector", columnDefinition = "tsvector", insertable = false, updatable = false)
+    private Object searchVector;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private OffsetDateTime createdAt;
 

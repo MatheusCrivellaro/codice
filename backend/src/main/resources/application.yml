@@ -27,9 +27,20 @@ server:
 codice:
   admin:
     seed-secret: codice-seed-dev-secret
+  google-books:
+    api-key: AIzaSyAlRvgeM-Miy5eBIiXTz2wmZZ-PQOnXCFI
+#    api-key: ${GOOGLE_BOOKS_API_KEY:}
+  lookup:
+    cache-ttl-hours: 24
   jwt:
     secret: codice-dev-secret-key-min-256-bits-trocar-em-producao-obrigatoriamente!
     expiration-seconds: 604800
+  storage:
+    endpoint: ${R2_ENDPOINT:http://localhost:9000}
+    access-key: ${R2_ACCESS_KEY:minioadmin}
+    secret-key: ${R2_SECRET_KEY:minioadmin}
+    bucket: ${R2_BUCKET:codice-uploads}
+    public-url: ${R2_PUBLIC_URL:http://localhost:9000/codice-uploads}
 
 management:
   endpoints:

@@ -9,8 +9,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
+import { usePageTitle } from '@/hooks/usePageTitle'
 
 export function LoginPage() {
+    usePageTitle('Entrar')
     const { login } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
@@ -39,13 +41,13 @@ export function LoginPage() {
     }
 
     return (
-        <div className="flex min-h-[80vh] items-center justify-center px-4">
-            <Card className="w-full max-w-sm">
+        <div className="container-codice flex min-h-[60vh] items-center justify-center py-12">
+            <Card className="w-full max-w-md">
                 <CardHeader>
-                    <CardTitle className="font-serif text-xl text-[#2A2420]">
+                    <CardTitle className="font-display text-2xl text-tinta">
                         Entrar no acervo
                     </CardTitle>
-                    <CardDescription>
+                    <CardDescription className="font-body">
                         Acesse sua conta para explorar o acervo.
                     </CardDescription>
                 </CardHeader>
@@ -69,7 +71,7 @@ export function LoginPage() {
                             <Input
                                 id="password"
                                 type="password"
-                                placeholder="No mínimo 8 caracteres"
+                                placeholder="Sua senha"
                                 {...register('password')}
                             />
                             {errors.password && (
@@ -81,9 +83,9 @@ export function LoginPage() {
                             {isSubmitting ? 'Entrando...' : 'Entrar'}
                         </Button>
 
-                        <p className="text-center text-sm text-[#2A2420]/60">
+                        <p className="text-center font-ui text-sm text-tinta-leve">
                             Não tem conta?{' '}
-                            <Link to="/cadastro" className="text-[#7A2E2E] hover:underline">
+                            <Link to="/cadastro" className="text-bordo hover:underline">
                                 Criar uma.
                             </Link>
                         </p>

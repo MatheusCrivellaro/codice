@@ -1,0 +1,17 @@
+### Memorias Postumas de Bras Cubas (deve achar no Google Books)
+GET http://localhost:8080/lookup/isbn/9788535911725
+
+### Mesmo ISBN com hifens (deve normalizar e funcionar)
+GET http://localhost:8080/lookup/isbn/978-85-359-1172-5
+
+### Casa-Grande & Senzala
+GET http://localhost:8080/lookup/isbn/9788526008717
+
+### ISBN inexistente (esperado: 404)
+GET http://localhost:8080/lookup/isbn/0000000000000
+
+### ISBN invalido (esperado: 400)
+GET http://localhost:8080/lookup/isbn/123
+
+### ISBN-10, Penguin Classics (testa ISBN de 10 digitos e possivel fallback Open Library)
+GET http://localhost:8080/lookup/isbn/0140449132

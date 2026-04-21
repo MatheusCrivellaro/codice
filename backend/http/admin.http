@@ -1,0 +1,56 @@
+### Bootstrap admin (com header secreto)
+POST http://localhost:8080/admin/bootstrap
+Content-Type: application/json
+X-Admin-Secret: codice-seed-dev-secret
+
+{
+  "email": "maria@email.com"
+}
+
+### Login do admin (recebe token com isAdmin=true)
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "maria@email.com",
+  "password": "senha123"
+}
+
+### GET /admin/listings?status=PENDING_REVIEW (com token admin)
+GET http://localhost:8080/admin/listings?status=PENDING_REVIEW
+Authorization: Bearer {{admin_token}}
+
+### POST /admin/listings/{id}/approve
+POST http://localhost:8080/admin/listings/{{listing_id}}/approve
+Authorization: Bearer {{admin_token}}
+
+### POST /admin/listings/{id}/pause
+POST http://localhost:8080/admin/listings/{{listing_id}}/pause
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "note": "foto ruim"
+}
+
+### POST /admin/listings/{id}/resume
+POST http://localhost:8080/admin/listings/{{listing_id}}/resume
+Authorization: Bearer {{admin_token}}
+
+### POST /admin/seed com token de admin (esperado: 200)
+POST http://localhost:8080/admin/seed
+Authorization: Bearer {{admin_token}}
+
+### POST /admin/seed sem token (esperado: 401)
+POST http://localhost:8080/admin/seed
+
+### GET /admin/seed (esperado: 405)
+GET http://localhost:8080/admin/seed
+Authorization: Bearer {{admin_token}}
+
+### GET /admin/listings sem token (esperado: 401)
+GET http://localhost:8080/admin/listings
+
+### GET /admin/listings com token nao-admin (esperado: 403)
+GET http://localhost:8080/admin/listings
+Authorization: Bearer {{user_token}}
