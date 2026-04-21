@@ -18,7 +18,16 @@
       "Bash(npx shadcn@latest add label --yes)",
       "Bash(npx tsc:*)",
       "Bash(npm ls:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(mkdir -p C:/Users/mathe/dev/codice/backend/src/main/java/br/com/codice/api/book/dto)",
+      "Bash(mkdir -p C:/Users/mathe/dev/codice/backend/src/main/java/br/com/codice/api/seller)",
+      "Bash(mkdir -p C:/Users/mathe/dev/codice/backend/src/main/java/br/com/codice/api/listing)",
+      "Bash(mkdir -p C:/Users/mathe/dev/codice/backend/src/main/java/br/com/codice/api/admin)",
+      "Bash(echo \"PID: $!\")",
+      "Read(//tmp/**)",
+      "Bash(python3 -m json.tool)",
+      "Bash(pkill -f \"spring-boot:run\")",
+      "Bash(fuser -k 8080/tcp)"
     ]
   }
 }

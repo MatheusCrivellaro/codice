@@ -1,0 +1,15 @@
+package br.com.codice.api.seller;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+import java.util.UUID;
+
+public interface SellerRepository extends JpaRepository<Seller, UUID> {
+
+    Optional<Seller> findByUserId(UUID userId);
+
+    Optional<Seller> findBySlug(String slug);
+
+    boolean existsBySlug(String slug);
+}

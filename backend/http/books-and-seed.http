@@ -1,0 +1,25 @@
+### Seed com header secreto (deve retornar 200 com resumo)
+POST http://localhost:8080/admin/seed
+X-Admin-Secret: codice-seed-dev-secret
+Content-Type: application/json
+
+### Seed sem header (deve retornar 403)
+POST http://localhost:8080/admin/seed
+Content-Type: application/json
+
+### Seed com header errado (deve retornar 403)
+POST http://localhost:8080/admin/seed
+X-Admin-Secret: valor-errado
+Content-Type: application/json
+
+### Listar books (paginacao default)
+GET http://localhost:8080/books
+
+### Listar books (paginacao custom, ordenado por titulo)
+GET http://localhost:8080/books?page=0&size=5&sort=title,asc
+
+### Buscar book por slug
+GET http://localhost:8080/books/memorias-postumas-de-bras-cubas
+
+### Buscar book por slug inexistente (deve retornar 404)
+GET http://localhost:8080/books/slug-que-nao-existe

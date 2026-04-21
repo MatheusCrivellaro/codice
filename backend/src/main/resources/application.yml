@@ -25,6 +25,8 @@ server:
   port: 8080
 
 codice:
+  admin:
+    seed-secret: codice-seed-dev-secret
   jwt:
     secret: codice-dev-secret-key-min-256-bits-trocar-em-producao-obrigatoriamente!
     expiration-seconds: 604800

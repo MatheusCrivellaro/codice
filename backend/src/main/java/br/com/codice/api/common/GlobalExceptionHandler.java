@@ -2,6 +2,7 @@ package br.com.codice.api.common;
 
 import br.com.codice.api.auth.EmailAlreadyInUseException;
 import br.com.codice.api.auth.InvalidCredentialsException;
+import br.com.codice.api.book.BookNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -46,6 +47,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, Object>> handleInvalidCredentials(InvalidCredentialsException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
                 "status", 401,
+                "error", ex.getMessage()
+        ));
+    }
+
+    @ExceptionHandler(BookNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleBookNotFound(BookNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+                "status", 404,
                 "error", ex.getMessage()
         ));
     }

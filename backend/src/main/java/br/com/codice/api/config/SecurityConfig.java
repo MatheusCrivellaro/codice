@@ -38,6 +38,8 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/actuator/**", "/auth/register", "/auth/login").permitAll()
+                        .requestMatchers("/books/**").permitAll()
+                        .requestMatchers("/admin/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
