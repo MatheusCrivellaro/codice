@@ -141,7 +141,11 @@ export function BookPage() {
 
                     {book.synopsis && (
                         <Prose className="mt-6">
-                            <p>{book.synopsis}</p>
+                            {book.synopsis.split(/\n\s*\n/).map((paragraph, i) => (
+                                <p key={i} className={i === 0 ? 'drop-cap' : undefined}>
+                                    {paragraph}
+                                </p>
+                            ))}
                         </Prose>
                     )}
                 </div>
