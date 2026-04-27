@@ -313,6 +313,35 @@
         animation: shimmer-papel 1.5s ease-in-out infinite;
     }
 
+    /* Sombra editorial da capa de livro — duas camadas curtas que
+       sustentam o objeto sobre o papel sem virar drop-shadow webby.
+       Calibrada para nao cruzar o limiar do "berrante" do brief V03.
+       No hover, aprofunda levemente combinada com -translate-y-2px
+       no componente — efeito de "puxar o livro da estante". */
+    .capa-livro {
+        box-shadow:
+            0 1px 2px rgb(0 0 0 / 0.06),
+            0 3px 8px -2px rgb(0 0 0 / 0.05);
+    }
+
+    .group:hover .capa-livro {
+        box-shadow:
+            0 2px 4px rgb(0 0 0 / 0.10),
+            0 8px 18px -4px rgb(0 0 0 / 0.09);
+    }
+
+    .dark .capa-livro {
+        box-shadow:
+            0 1px 2px rgb(0 0 0 / 0.22),
+            0 4px 10px -2px rgb(0 0 0 / 0.18);
+    }
+
+    .dark .group:hover .capa-livro {
+        box-shadow:
+            0 2px 5px rgb(0 0 0 / 0.32),
+            0 10px 22px -4px rgb(0 0 0 / 0.26);
+    }
+
     /* Transicoes de pagina (Brief V03 §3.4): slide horizontal 8px +
        fade-in 160ms ease-out. Direcao depende do sentido da paginacao. */
     .page-in-right { animation: page-in-right 160ms ease-out; }
