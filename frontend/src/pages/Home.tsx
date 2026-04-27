@@ -88,7 +88,7 @@ export function Home() {
                     </div>
                 ) : (
                     <p className="py-8 text-center font-body text-sm text-tinta-leve">
-                        O acervo está sendo preparado. Volte em breve.
+                        A vitrine está sendo organizada. Volte em breve.
                     </p>
                 )}
 

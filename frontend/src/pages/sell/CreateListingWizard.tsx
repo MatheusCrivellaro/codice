@@ -43,7 +43,7 @@ export function CreateListingWizard() {
     const submitMutation = useMutation({
         mutationFn: listingsApi.createListing,
         onSuccess: () => {
-            toast.success('Oferta enviada para revisão.')
+            toast.success('Oferta enviada. Em breve passa pelas mãos do bibliotecário.')
             navigate('/vender/anuncios')
         },
         onError: (err) => {

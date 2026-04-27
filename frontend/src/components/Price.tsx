@@ -47,10 +47,10 @@ export function Price({ cents, className, size, asterisk }: PriceProps) {
                     ∗
                 </span>
             )}
-            <span className="type-uiserif mr-[0.18em] text-[0.65em] tracking-[0.05em]">
+            <span className="type-uiserif num-lining mr-[0.18em] text-[0.65em] tracking-[0.05em]">
                 {currency}
             </span>
-            <span className="tabular-nums">{number}</span>
+            <span className="num-lining">{number}</span>
         </span>
     )
 }

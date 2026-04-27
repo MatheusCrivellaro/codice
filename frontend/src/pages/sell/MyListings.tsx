@@ -36,7 +36,7 @@ export function MyListings() {
             </div>
 
             {isLoading ? (
-                <p className="text-sm text-tinta-leve">Folheando suas ofertas...</p>
+                <p className="font-body text-sm text-tinta-leve">Folheando suas ofertas…</p>
             ) : !data || data.content.length === 0 ? (
                 <div className="flex flex-col items-center py-16 text-center">
                     <LivroDosLivrosSeal size={96} className="mb-6" />

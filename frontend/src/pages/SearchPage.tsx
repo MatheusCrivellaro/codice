@@ -211,7 +211,7 @@ export function SearchPage() {
                 <Input
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
-                    placeholder="O que você procura?"
+                    placeholder="Procure por título, autor ou tema…"
                     className="h-10 flex-1"
                 />
                 <Button type="submit">Buscar</Button>
@@ -224,6 +224,34 @@ export function SearchPage() {
                 </aside>
 
                 <div className="min-w-0 flex-1">
+                    {/* Running head editorial — contexto da busca/filtro em
+                        type-uiserif (Fraunces opsz 14), oldstyle nums.
+                        Sutil, cinza-quente, sem bg, sem sticky. So aparece
+                        quando ha resultados e algum criterio definido. */}
+                    {data && data.content.length > 0 && (q || area || data.totalPages > 1) && (
+                        <p className="mb-3 type-uiserif num-oldstyle text-[12px] tracking-[0.1em] text-cinza-quente">
+                            <span>acervo</span>
+                            {q && (
+                                <>
+                                    <span aria-hidden="true" className="mx-2">·</span>
+                                    <span className="italic">«{q}»</span>
+                                </>
+                            )}
+                            {!q && area && (
+                                <>
+                                    <span aria-hidden="true" className="mx-2">·</span>
+                                    <span>{area}</span>
+                                </>
+                            )}
+                            {data.totalPages > 1 && (
+                                <>
+                                    <span aria-hidden="true" className="mx-2">·</span>
+                                    <span>página {page + 1} de {data.totalPages}</span>
+                                </>
+                            )}
+                        </p>
+                    )}
+
                     <div className="mb-4 flex items-center justify-between gap-3">
                         <p className="font-ui text-sm text-cinza-quente">
                             {data
@@ -312,8 +340,8 @@ export function SearchPage() {
                                     >
                                         Anterior
                                     </Button>
-                                    <span className="font-ui text-sm text-tinta-leve">
-                                        Página <span className="text-bordo">{page + 1}</span> de {data.totalPages}
+                                    <span className="type-uiserif num-oldstyle text-sm tracking-[0.05em] text-tinta-leve">
+                                        página <span className="text-bordo">{page + 1}</span> de {data.totalPages}
                                     </span>
                                     <Button
                                         variant="ghost"

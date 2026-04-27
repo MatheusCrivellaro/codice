@@ -20,7 +20,7 @@ export function ProtectedAdminRoute() {
     if (isLoading) {
         return (
             <div className="flex min-h-[50vh] items-center justify-center">
-                <p className="text-sm text-tinta-leve">Carregando...</p>
+                <p className="font-body text-sm text-tinta-leve">Folheando o acervo…</p>
             </div>
         )
     }

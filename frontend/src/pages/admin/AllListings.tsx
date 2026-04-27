@@ -155,7 +155,7 @@ export function AllListings() {
 
             <div className="mt-4">
                 {isLoading ? (
-                    <p className="text-sm text-tinta-leve">Folheando o acervo...</p>
+                    <p className="font-body text-sm text-tinta-leve">Folheando o acervo…</p>
                 ) : listings.length === 0 ? (
                     <p className="py-8 text-center text-sm text-tinta-leve">
                         Nenhuma oferta neste filtro.

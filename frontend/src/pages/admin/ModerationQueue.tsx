@@ -45,7 +45,7 @@ export function ModerationQueue() {
     }
 
     if (isLoading) {
-        return <p className="text-sm text-tinta-leve">Folheando a fila...</p>
+        return <p className="font-body text-sm text-tinta-leve">Folheando a fila…</p>
     }
 
     if (listings.length === 0) {

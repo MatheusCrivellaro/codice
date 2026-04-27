@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
@@ -18,37 +18,8 @@ import { usePageTitle } from '@/hooks/usePageTitle'
 import { useAuth } from '@/contexts/auth-context'
 import { createInterest } from '@/api/interests'
 import { formatRelativeDate, formatCatalogNumber, formatEdition } from '@/lib/format'
+import { renderEditorialText } from '@/lib/typography'
 import type { ListingOfferResponse } from '@/api/books'
-
-// Substitui aspas retas (") por curvas tipograficas ("...") em texto
-// editorial e destaca cada aspa com cor bordo, peso medio. Aspas dentro
-// de aspas nao sao tratadas — sinopses raramente tem isso e a heuristica
-// alterna abertura/fechamento sequencialmente.
-function renderEditorialText(text: string): ReactNode[] {
-    const nodes: ReactNode[] = []
-    let buffer = ''
-    let nextIsOpen = true
-    let key = 0
-    for (const ch of text) {
-        if (ch === '"') {
-            if (buffer) {
-                nodes.push(buffer)
-                buffer = ''
-            }
-            const quote = nextIsOpen ? '“' : '”'
-            nodes.push(
-                <span key={key++} className="font-medium text-bordo">
-                    {quote}
-                </span>,
-            )
-            nextIsOpen = !nextIsOpen
-        } else {
-            buffer += ch
-        }
-    }
-    if (buffer) nodes.push(buffer)
-    return nodes
-}
 
 export function BookPage() {
     const { slug } = useParams<{ slug: string }>()
@@ -64,7 +35,7 @@ export function BookPage() {
     const interestMutation = useMutation({
         mutationFn: createInterest,
         onSuccess: (thread) => {
-            toast.success('Interesse enviado')
+            toast.success('Interesse manifestado. Aguarde a resposta.')
             queryClient.invalidateQueries({ queryKey: ['threads'] })
             setInterestTarget(null)
             setInterestMessage('')
@@ -248,11 +219,15 @@ export function BookPage() {
                                         </div>
 
                                         {offer.conditionNotes && (
-                                            <p className="font-body text-sm text-tinta-leve">{offer.conditionNotes}</p>
+                                            <p className="font-body text-sm text-tinta-leve">
+                                                {renderEditorialText(offer.conditionNotes)}
+                                            </p>
                                         )}
 
                                         {offer.description && (
-                                            <p className="font-body text-sm text-tinta-leve">{offer.description}</p>
+                                            <p className="font-body text-sm text-tinta-leve">
+                                                {renderEditorialText(offer.description)}
+                                            </p>
                                         )}
 
                                         {offer.photos.length > 0 && (

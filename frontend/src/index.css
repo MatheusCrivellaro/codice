@@ -228,13 +228,19 @@
 }
 
 @layer components {
-    /* Bloco de leitura longa — sinopses, descrições, textos editoriais */
+    /* Bloco de leitura longa — sinopses, descrições, textos editoriais.
+       Numerais old-style ('onum') — desenhados com altura-x e descendentes,
+       fluem com o corpo da letra ao invez de saltar como caixa-alta. Coisa
+       de bibliotecario: numero de capitulo no meio do paragrafo nao quebra
+       o ritmo de leitura. UI mantem lining (consulte .num-lining). */
     .prose-codice {
         font-family: var(--font-body);
         font-size: 1.0625rem;
         line-height: 1.6;
         max-width: var(--max-w-reading);
         color: var(--color-tinta);
+        font-variant-numeric: oldstyle-nums proportional-nums;
+        font-feature-settings: 'onum', 'pnum';
     }
 
     .prose-codice p + p {
@@ -284,6 +290,21 @@
         font-weight: 500;
         font-variation-settings: 'opsz' 144;
         letter-spacing: 0.03em;
+    }
+
+    /* Numerais lining (mesma altura, alinhados ao topo) — para preco,
+       UI tabular, numeros de pagina display. Override quando dentro
+       de .prose-codice ou contexto editorial. */
+    .num-lining {
+        font-variant-numeric: lining-nums tabular-nums;
+        font-feature-settings: 'lnum', 'tnum';
+    }
+
+    /* Numerais old-style explicito — quando voce quer o efeito editorial
+       fora do .prose-codice (running head, marginalia, citacao curta). */
+    .num-oldstyle {
+        font-variant-numeric: oldstyle-nums proportional-nums;
+        font-feature-settings: 'onum', 'pnum';
     }
 
     /* Grid de cards do acervo — 2 colunas mobile, 3 tablet, 4 desktop,
@@ -366,5 +387,34 @@
         .drop-cap::first-letter {
             font-size: 2.8em;
         }
+    }
+}
+
+/* Acessibilidade: respeita pedido do sistema operacional para reduzir
+   movimento. Neutraliza shimmer-papel, page-in-*, transicoes de hover
+   da capa-livro e scroll suave. Mantem opacity-only fades curtos
+   (<= 100ms) que ja ficam abaixo do limiar de incomodo vestibular. */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .shimmer-papel {
+        animation: none;
+        background-color: var(--color-papel-profundo);
+    }
+
+    .page-in-right,
+    .page-in-left {
+        animation: none;
     }
 }

@@ -292,10 +292,27 @@ export function AppShell() {
 
             <footer className="mt-auto bg-papel-profundo">
                 <div className="container-codice py-12">
-                    <Ornament variant="double-rule" className="mx-auto mb-8 max-w-[280px]" />
-                    <p className="text-center font-ui text-[13px] text-cinza-quente">
-                        Códice — livros usados com cuidado de bibliotecário.
-                    </p>
+                    {/* Colofao editorial — marca + tres marginalias curtas
+                        em type-uiserif (Fraunces opsz 14), separadas por
+                        interpunto. Brief manda restricao: tres elementos,
+                        sem icones, sem links sociais. */}
+                    <Ornament
+                        variant="fleuron"
+                        tone="borda"
+                        className="mx-auto mb-7 max-w-[280px]"
+                    />
+                    <div className="flex flex-col items-center gap-3 text-center">
+                        <Link to="/" className="brand-codice text-lg text-tinta">
+                            códice
+                        </Link>
+                        <p className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 type-uiserif text-[12px] tracking-[0.08em] text-cinza-quente">
+                            <span>livros usados com cuidado de bibliotecário</span>
+                            <span aria-hidden="true">·</span>
+                            <span>são paulo</span>
+                            <span aria-hidden="true">·</span>
+                            <span className="num-oldstyle">abril de 2026</span>
+                        </p>
+                    </div>
                 </div>
             </footer>
         </div>
