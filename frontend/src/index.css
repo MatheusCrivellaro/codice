@@ -205,6 +205,21 @@
     }
 }
 
+@keyframes shimmer-papel {
+    0%, 100% { background-color: var(--color-papel-profundo); }
+    50% { background-color: var(--color-cinza-borda); }
+}
+
+@keyframes page-in-right {
+    from { opacity: 0; transform: translateX(8px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes page-in-left {
+    from { opacity: 0; transform: translateX(-8px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
 @layer components {
     /* Bloco de leitura longa — sinopses, descrições, textos editoriais */
     .prose-codice {
@@ -283,6 +298,18 @@
             grid-template-columns: repeat(4, minmax(0, 1fr));
         }
     }
+
+    /* Skeleton de loading — shimmer entre papel-profundo e cinza-borda
+       (Brief V03 §3.4). Substitui o pulse generico do shadcn por uma
+       transicao tonal coerente com a paleta. */
+    .shimmer-papel {
+        animation: shimmer-papel 1.5s ease-in-out infinite;
+    }
+
+    /* Transicoes de pagina (Brief V03 §3.4): slide horizontal 8px +
+       fade-in 160ms ease-out. Direcao depende do sentido da paginacao. */
+    .page-in-right { animation: page-in-right 160ms ease-out; }
+    .page-in-left { animation: page-in-left 160ms ease-out; }
 
     /* Capitular iluminada — primeira letra de paragrafo editorial.
        Fraunces eixo optico alto, ~3 linhas de altura, bordo no light /

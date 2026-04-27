@@ -36,6 +36,7 @@ export function SearchPage() {
     const [searchInput, setSearchInput] = useState(searchParams.get('q') ?? '')
     const [showAllAreas, setShowAllAreas] = useState(false)
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+    const [slideDirection, setSlideDirection] = useState<'forward' | 'backward'>('forward')
 
     const q = searchParams.get('q') ?? undefined
     const area = searchParams.get('area') ?? undefined
@@ -80,6 +81,7 @@ export function SearchPage() {
     }
 
     function setPage(p: number) {
+        setSlideDirection(p > page ? 'forward' : 'backward')
         setSearchParams((prev) => {
             const next = new URLSearchParams(prev)
             if (p > 0) {
@@ -291,7 +293,10 @@ export function SearchPage() {
                         </div>
                     ) : (
                         <>
-                            <div className="grid-acervo">
+                            <div
+                                key={page}
+                                className={`grid-acervo ${slideDirection === 'forward' ? 'page-in-right' : 'page-in-left'}`}
+                            >
                                 {data.content.map((book) => (
                                     <BookCard key={book.id} book={book} />
                                 ))}
