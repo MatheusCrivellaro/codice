@@ -77,8 +77,9 @@
 
 :root {
     /* Granulado off-white — micrograin de tinta sobre papel.
-       Tile 280x280, fractalNoise, cor #2A2420 alpha ~0.04. */
-    --paper-noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.165 0 0 0 0 0.141 0 0 0 0 0.125 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+       Tile 280x280, fractalNoise, cor #2A2420 alpha 0.06. Calibrado
+       acima do limiar perceptual (~3% delta) sem virar ostensivo. */
+    --paper-noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.165 0 0 0 0 0.141 0 0 0 0 0.125 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 
     /* Mapeamento shadcn → paleta Códice (modo claro) */
     --background: oklch(0.961 0.013 81.5);          /* papel #F7F3EC */
@@ -117,8 +118,9 @@
 
 .dark {
     /* Granulado mais fino e mais frio para superfície escura.
-       Cor #E8E0D2 alpha ~0.025, baseFrequency mais alto. */
-    --paper-noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' seed='13' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.910 0 0 0 0 0.878 0 0 0 0 0.824 0 0 0 0.025 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+       Cor #E8E0D2 alpha 0.06 (subido de 0.025 — fundo escuro come
+       muito alpha baixo, ficava sub-perceptual). */
+    --paper-noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' seed='13' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.910 0 0 0 0 0.878 0 0 0 0 0.824 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 
     /* Overrides dos tokens Códice para modo escuro */
     --color-papel: #1A1714;
