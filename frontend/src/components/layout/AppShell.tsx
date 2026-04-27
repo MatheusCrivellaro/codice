@@ -84,7 +84,7 @@ export function AppShell() {
     }
 
     return (
-        <div className="flex min-h-screen flex-col bg-papel">
+        <div className="flex min-h-screen flex-col">
             <header className="border-b border-cinza-borda bg-papel">
                 <div className="container-codice flex h-16 items-center gap-6">
                     <Link
