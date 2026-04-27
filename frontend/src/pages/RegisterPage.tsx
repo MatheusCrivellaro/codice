@@ -37,7 +37,7 @@ const PROFILE_OPTIONS = [
     {
         value: 'INDIVIDUAL_SELLER' as const,
         label: 'Quero anunciar meus livros',
-        description: 'Desencalhar a estante, vender exemplares pessoais',
+        description: 'Desencalhar a estante, anunciar exemplares pessoais',
     },
 ]
 

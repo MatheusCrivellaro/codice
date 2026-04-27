@@ -10,7 +10,7 @@ import { SellerDashboard } from '@/pages/sell/SellerDashboard'
 import * as listingsApi from '@/api/listings'
 
 export function SellPage() {
-    usePageTitle('Vender')
+    usePageTitle('Anunciar')
     const { user } = useAuth()
 
     if (user?.profileType === 'BUYER') {
@@ -22,7 +22,7 @@ export function SellPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <p className="font-body text-sm text-tinta-leve">
-                            Leitores não anunciam livros por aqui. Se quiser vender, altere seu perfil para sebo ou vendedor.
+                            Leitores não anunciam livros por aqui. Se quiser anunciar, altere seu perfil para sebo ou vendedor.
                         </p>
                         <Button asChild>
                             <Link to="/">Voltar para o acervo</Link>

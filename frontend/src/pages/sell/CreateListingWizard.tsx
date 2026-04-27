@@ -50,7 +50,7 @@ export function CreateListingWizard() {
             if (status === 400) {
                 toast.error((err as Error).message || 'Dados inválidos.')
             } else if (status === 403) {
-                toast.error('Compradores não anunciam livros. Se quiser vender, altere seu perfil.')
+                toast.error('Compradores não anunciam livros. Se quiser anunciar, altere seu perfil.')
             } else {
                 toast.error('Algo se perdeu entre as páginas. Tente novamente em instantes.')
             }
