@@ -10,6 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { BookCard } from '@/components/BookCard'
 import { Ornament } from '@/components/Ornament'
+import { AreaEmblem } from '@/components/AreaEmblem'
 import { useBookSearch } from '@/hooks/useBookSearch'
 import { useAcademicAreas } from '@/hooks/useAcademicAreas'
 import { useActiveStates } from '@/hooks/useActiveStates'
@@ -106,7 +107,8 @@ export function SearchPage() {
                                         checked={area === a}
                                         onCheckedChange={(checked) => updateParam('area', checked ? a : undefined)}
                                     />
-                                    {a}
+                                    <AreaEmblem area={a} size={14} className="text-bordo/70" />
+                                    <span>{a}</span>
                                 </label>
                             ))}
                         </div>
