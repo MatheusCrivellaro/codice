@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { Stepper } from '@/components/ui/stepper'
+import { Ornament } from '@/components/Ornament'
 import { StepBook } from '@/pages/sell/steps/StepBook'
 import { StepDetails } from '@/pages/sell/steps/StepDetails'
 import { StepPhotos } from '@/pages/sell/steps/StepPhotos'
@@ -94,7 +95,8 @@ export function CreateListingWizard() {
 
     return (
         <div className="container-codice max-w-[640px] py-8">
-            <h1 className="mb-8 font-display text-3xl text-tinta">anunciar um livro</h1>
+            <h1 className="font-display text-3xl text-tinta">anunciar um livro</h1>
+            <Ornament variant="rule" className="mt-3 mb-8" />
             <div className="mb-10">
                 <Stepper steps={STEPS} currentStep={step} />
             </div>

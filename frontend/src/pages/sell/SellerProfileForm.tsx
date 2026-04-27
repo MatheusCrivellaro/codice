@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Ornament } from '@/components/Ornament'
 import { sellerProfileSchema, type SellerProfileFormData, UF_OPTIONS } from '@/lib/schemas/seller'
 import * as listingsApi from '@/api/listings'
 import type { ApiError } from '@/api/client'
@@ -53,12 +54,13 @@ export function SellerProfileForm() {
         <div className="container-codice max-w-lg py-12">
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-2xl">Monte a vitrine do seu sebo</CardTitle>
+                    <CardTitle className="text-2xl">monte a vitrine do seu sebo</CardTitle>
                     <CardDescription className="font-body">
                         Essas informações serão públicas na página da sua loja.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
+                    <Ornament variant="rule" className="mx-auto mb-6 max-w-[140px]" />
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                         <div className="space-y-2">
                             <Label htmlFor="publicName">Nome público</Label>

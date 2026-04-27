@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import { cn } from '@/lib/utils'
+import { Ornament } from '@/components/Ornament'
 import { usePageTitle } from '@/hooks/usePageTitle'
 
 const navItems = [
@@ -12,7 +13,8 @@ export function AdminLayout() {
 
     return (
         <div className="container-codice py-8">
-            <h1 className="mb-8 font-display text-3xl text-tinta">painel administrativo</h1>
+            <h1 className="font-display text-3xl text-tinta">painel administrativo</h1>
+            <Ornament variant="rule" className="mt-3 mb-8" />
 
             <div className="flex flex-col gap-6 md:flex-row md:gap-8">
                 <nav className="flex shrink-0 flex-col gap-1 rounded-lg bg-papel-profundo p-3 md:w-[200px] md:self-start md:p-4">
