@@ -132,18 +132,20 @@ export function BookPage() {
             <div className="flex flex-col gap-8 md:flex-row">
                 <div className="mx-auto w-full max-w-[300px] shrink-0 self-start md:mx-0">
                     {book.coverImageUrl ? (
-                        <img
-                            src={book.coverImageUrl}
-                            alt={book.title}
-                            className="w-full rounded object-contain shadow-sm"
-                            onError={(e) => {
-                                e.currentTarget.style.display = 'none'
-                                const parent = e.currentTarget.parentElement
-                                if (parent) parent.classList.add('bg-papel-profundo', 'aspect-[2/3]', 'flex', 'items-center', 'justify-center', 'rounded')
-                            }}
-                        />
+                        <div className="rounded bg-papel-profundo shadow-sm dark:bg-moldura-capa">
+                            <img
+                                src={book.coverImageUrl}
+                                alt={book.title}
+                                className="w-full rounded object-contain"
+                                onError={(e) => {
+                                    e.currentTarget.style.display = 'none'
+                                    const parent = e.currentTarget.parentElement
+                                    if (parent) parent.classList.add('aspect-[2/3]', 'flex', 'items-center', 'justify-center')
+                                }}
+                            />
+                        </div>
                     ) : (
-                        <div className="flex aspect-[2/3] items-center justify-center rounded bg-papel-profundo">
+                        <div className="flex aspect-[2/3] items-center justify-center rounded bg-papel-profundo dark:bg-moldura-capa">
                             <BookOpenIcon className="size-16 text-cinza-quente/60" strokeWidth={1.25} />
                         </div>
                     )}

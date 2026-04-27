@@ -72,7 +72,7 @@ export function ConversationsPage() {
                                 className="flex gap-3 rounded-md p-4 transition-colors hover:bg-papel-profundo"
                             >
                                 {/* Book cover thumbnail */}
-                                <div className="h-16 w-12 shrink-0 overflow-hidden rounded bg-papel-profundo">
+                                <div className="h-16 w-12 shrink-0 overflow-hidden rounded bg-papel-profundo dark:bg-moldura-capa">
                                     {thread.bookCoverUrl ? (
                                         <img
                                             src={thread.bookCoverUrl}

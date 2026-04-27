@@ -16,7 +16,7 @@ export function BookCard({ book }: BookCardProps) {
             to={`/livro/${book.slug}`}
             className="group block border-l-2 border-bordo/25 pl-3 transition-[transform,box-shadow] duration-[180ms] ease-out hover:translate-x-[2px] hover:shadow-[0_2px_4px_rgba(0,0,0,0.08)] dark:border-bordo/15 dark:hover:shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
         >
-            <div className="aspect-[2/3] w-full overflow-hidden rounded-sm bg-papel-profundo">
+            <div className="aspect-[2/3] w-full overflow-hidden rounded-sm bg-papel-profundo dark:bg-moldura-capa">
                 {book.coverImageUrl ? (
                     <img
                         src={book.coverImageUrl}

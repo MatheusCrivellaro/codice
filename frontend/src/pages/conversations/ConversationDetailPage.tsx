@@ -93,7 +93,7 @@ export function ConversationDetailPage() {
                 {thread ? (
                     <>
                         {thread.bookCoverUrl && (
-                            <div className="h-10 w-8 shrink-0 overflow-hidden rounded bg-papel-profundo">
+                            <div className="h-10 w-8 shrink-0 overflow-hidden rounded bg-papel-profundo dark:bg-moldura-capa">
                                 <img
                                     src={thread.bookCoverUrl}
                                     alt={thread.bookTitle}

@@ -26,6 +26,12 @@
     --color-papel-escuro: #E8E0D2;
     --color-dourado: #B89968;
 
+    /* Moldura clara fixa para wrapper de capa de livro. Em ambos os
+       temas. PNGs do Google Books com fundo branco fundem com a
+       moldura — evita o destaque grosseiro \"branco contra preto\" no
+       dark. JPGs ganham um polaroid sutil. */
+    --color-moldura-capa: #E8E0D2;
+
     /* Limites de leitura */
     --max-w-content: 1280px;
     --max-w-reading: 680px;
