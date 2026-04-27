@@ -10,14 +10,16 @@ interface OrnamentProps {
     className?: string
 }
 
+// Dark mode usa opacidade reduzida — em fundo escuro, qualquer cor
+// saturada se destaca mais que em fundo claro. Brief V03 §3.1.
 const LINE_TONE: Record<OrnamentTone, string> = {
-    bordo: 'bg-bordo/65',
-    borda: 'bg-cinza-borda/60',
+    bordo: 'bg-bordo/65 dark:bg-bordo/45',
+    borda: 'bg-cinza-borda/60 dark:bg-cinza-borda/40',
 }
 
 const FLEURON_TONE: Record<OrnamentTone, string> = {
-    bordo: 'text-bordo/70',
-    borda: 'text-cinza-borda/70',
+    bordo: 'text-bordo/70 dark:text-bordo/55',
+    borda: 'text-cinza-borda/70 dark:text-cinza-borda/45',
 }
 
 export function Ornament({ variant = 'rule', tone = 'bordo', className }: OrnamentProps) {

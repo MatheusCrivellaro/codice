@@ -117,10 +117,11 @@
 }
 
 .dark {
-    /* Granulado mais fino e mais frio para superfície escura.
-       Cor #E8E0D2 alpha 0.06 (subido de 0.025 — fundo escuro come
-       muito alpha baixo, ficava sub-perceptual). */
-    --paper-noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' seed='13' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.910 0 0 0 0 0.878 0 0 0 0 0.824 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    /* Granulado mais fino e mais frio para superficie escura.
+       Cor #E8E0D2 alpha 0.04 — calibracao V03: 0.06 ficava chamativo
+       contra o brief V03 (\"livro a noite, nao site invertido\"); 0.025
+       do brief V01 ficava sub-perceptual. 0.04 mantem ~3% delta. */
+    --paper-noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' seed='13' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.910 0 0 0 0 0.878 0 0 0 0 0.824 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 
     /* Overrides dos tokens Códice para modo escuro */
     --color-papel: #1A1714;
