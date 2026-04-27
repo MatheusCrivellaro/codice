@@ -4,11 +4,15 @@ Marketplace de livros usados, solo founder, boring tech, MVP enxuto. Antes de qu
 
 ## Documentos de referência
 
-- `codice-technical-reference.md` — estado atual do código (stack, schema, endpoints, estrutura de pastas). Atualize ao final de mudança estrutural.
-- `codice-brand-reference.md` — síntese operacional de identidade visual, tom de voz e mascote. Fonte de verdade para paleta, tipografia e vocabulário.
+Índice completo em `docs/README.md`. Os essenciais para sessão:
+
+- `docs/codice-technical-reference.md` — estado atual do código (stack, schema, endpoints, estrutura de pastas). Atualize ao final de mudança estrutural ou via `/milestone-fechar`.
+- `docs/codice-brand-reference.md` — síntese operacional de identidade visual, tom de voz e mascote. Fonte de verdade para paleta, tipografia e vocabulário.
 - `docs/Codice_Documento_Mestre.pdf`, `docs/Codice_Brief_Livro_dos_Livros.pdf`, `docs/Codice_Brief_Logo.pdf` — documentos canônicos. Consulte se o `.md` de brand não cobrir.
 
 Antes de discutir schema, endpoint ou estrutura, leia o `technical-reference`. Antes de discutir cor, fonte, copy ou ilustração, leia o `brand-reference`. Não invente o que está nesses arquivos.
+
+Workflow operacional (abertura de sessão, slash commands, retrospectiva, manutenção da infra `.claude/`): `docs/claude-playbook.md` — leitura no projeto web, **não entra em contexto de sessão**.
 
 ## Protocolo de sessão
 
@@ -59,4 +63,4 @@ Não reabra sem eu pedir. Detalhe em `technical-reference` §13.
 
 ## Fora de escopo permanente no MVP
 
-Pagamento real, gateway, checkout, integração Correios, avaliação pós-compra, RAG do Livro dos Livros, biblioteca pessoal, favoritos, email transacional, edição de listing/perfil, reset de senha, verificação de email, OAuth, refresh token, PWA, OCR, recomendação por ML. Lista completa em `technical-reference` §12. Se meu pedido tocar nesses itens, confirme antes — provavelmente é coisa de Fase 2+.
+Lista completa em `technical-reference` §12. Exemplos: pagamento real, OAuth, refresh token, reset de senha, OCR, recomendação por ML, edição de listing/perfil, RAG do Livro dos Livros, biblioteca pessoal, favoritos. Se meu pedido tocar esses itens, confirme antes — provavelmente é Fase 2+.

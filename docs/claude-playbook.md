@@ -269,7 +269,7 @@ para. me mostra o plano antes de seguir. o que você entendeu do pedido, o que v
 
 ## O que este playbook não cobre
 
-- Deploy e operação em produção (Railway, Vercel, R2). Consulte `docs/deploy-railway.md` e `docs/deploy-vercel.md`.
+- Deploy e operação em produção (Railway, Vercel, R2). Consulte `docs/deploy/railway.md` e `docs/deploy/vercel.md`.
 - Decisões de produto. Documento Mestre manda.
 - Decisões de marca. Briefs mandam.
 - Fluxo de desenvolvimento fora do Claude (abrir editor, rodar Docker Compose, etc). Isso é IDE, não Claude.

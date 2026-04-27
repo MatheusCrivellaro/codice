@@ -6,7 +6,7 @@ Guia para deploy manual do frontend Vite + React na Vercel, com domínio custom 
 
 - Conta no GitHub com acesso ao repositório `codice`.
 - Conta na Vercel (https://vercel.com) — o plano Hobby (gratuito) é suficiente pro MVP.
-- Backend já rodando no Railway com HTTPS (ver `docs/deploy-railway.md`).
+- Backend já rodando no Railway com HTTPS (ver [`./railway.md`](./railway.md)).
 
 ## Setup inicial (uma vez)
 

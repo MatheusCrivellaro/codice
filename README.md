@@ -31,4 +31,8 @@ Instruções por subprojeto:
 - **Frontend:** https://codice.com.br (Vercel)
 - **API:** https://api.codice.com.br (Railway)
 
-Ver [docs/deploy-vercel.md](./docs/deploy-vercel.md) e [docs/deploy-railway.md](./docs/deploy-railway.md) para setup de deploy.
+Ver [docs/deploy/vercel.md](./docs/deploy/vercel.md) e [docs/deploy/railway.md](./docs/deploy/railway.md) para setup de deploy.
+
+## Documentação
+
+Índice em [docs/README.md](./docs/README.md). Inclui referência técnica, brand, deploy, prompts de milestone e ADRs.

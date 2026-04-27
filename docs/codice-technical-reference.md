@@ -264,13 +264,20 @@ codice/
 │   ├── postgres/init/01-extensions.sql
 │   └── README.md
 └── docs/
+    ├── README.md (índice da documentação)
+    ├── claude-playbook.md (workflow operacional, web-only)
+    ├── codice-technical-reference.md (este arquivo)
+    ├── codice-brand-reference.md
     ├── Codice_Documento_Mestre.pdf
     ├── Codice_Brief_Livro_dos_Livros.pdf
     ├── Codice_Brief_Logo.pdf
-    ├── deploy-railway.md
-    ├── deploy-vercel.md
+    ├── adr/ (Architecture Decision Records)
+    ├── deploy/
+    │   ├── railway.md
+    │   └── vercel.md
     └── prompts/
         ├── M13.md ... M24.md (prompts dos milestones para Claude Code)
+        └── visual/V01..V03.md (prompts da trilha de identidade visual)
 ```
 
 ---
@@ -503,51 +510,9 @@ Tipos de perfil: `BUYER` (só compra), `BOOKSTORE` (sebo, precisa de perfil de s
 
 ## 7. Identidade visual
 
-### Paleta
+Fonte operacional única: [`codice-brand-reference.md`](./codice-brand-reference.md). Cobre paleta (light/dark), tipografia (Fraunces / Source Serif 4 / Inter), tokens Tailwind, layout, tom de voz, vocabulário, mascote e logo.
 
-**Light mode:**
-- Papel (fundo): `#F7F3EC`
-- Papel profundo (cards): `#EFE8DA`
-- Tinta (texto): `#2A2420`
-- Bordô (destaque): `#7A2E2E`
-- Cinza-quente (secundário): `#A89F92`
-- Cinza-borda: `#D4CFC7`
-
-**Dark mode:**
-- Fundo: `#1A1714`
-- Superfície: `#252220`
-- Texto: `#E8E0D2`
-- Dourado (destaque, substitui bordô): `#B89968`
-- Bordas: `#3D3732`
-
-Regra: bordô no light, dourado no dark. Bordô em fundo escuro "vira sangue".
-
-### Tipografia
-
-- **Fraunces** (400-500) — títulos, display, preços. Serifa moderna, eixo óptico variável.
-- **Source Serif 4** (400) — leitura longa, sinopses. Line-height 1.6.
-- **Inter** (400-500) — UI, labels, inputs, textos curtos.
-
-Hierarquia: H1 40-48px, H2 28-32px, corpo 16-17px, UI 14-15px. Pesos baixos. Premium é restrição.
-
-### Layout
-
-- Max-width conteúdo: 1280px
-- Blocos de leitura: ~680px
-- Grid de livros: 4col desktop, 3col tablet, 2col mobile, gap 24px
-- Espaçamento generoso
-
-### Tom de voz
-
-Caloroso-sóbrio. Vocabulário de biblioteca: "acervo" (não catálogo), "estante" (não carrinho), "oferta" (não anúncio), "levar este livro" (não comprar). Sem emojis em copy oficial. Referências literárias quando couber, sem pedantismo.
-
-### Mascote — Livro dos Livros
-
-Bibliotecário sábio em forma de livro antropomórfico. Sem rosto (sem olhos, boca, nariz). Expressão via postura, inclinação e gesto dos braços. Traço a bico-de-pena, monocromático. Referências: Edward Gorey, Saul Steinberg, vinhetas Penguin Classics 60-70. Anti-referências: Disney, Duolingo, kawaii. Brief completo em `docs/Codice_Brief_Livro_dos_Livros.pdf`. Ainda não implementado como ilustração — aguardando execução.
-
-### Logo
-
-Marca de impressor renascentista reinterpretada com geometria contemporânea. Selo abstrato com container geométrico (círculo/losango) e símbolo central. Brief completo em `docs/Codice_Brief_Logo.pdf`. Ainda não executado — favicon placeholder com letra "c".
+Documentos canônicos (PDF) em `docs/Codice_Documento_Mestre.pdf`, `docs/Codice_Brief_Livro_dos_Livros.pdf` e `docs/Codice_Brief_Logo.pdf` — consulte se o `.md` de brand não cobrir.
 
 ---
 
