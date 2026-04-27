@@ -90,7 +90,7 @@ export function AppShell() {
                 <div className="container-codice flex h-16 items-center gap-6">
                     <Link
                         to="/"
-                        className="shrink-0 font-display text-2xl tracking-tight text-tinta"
+                        className="brand-codice shrink-0 text-2xl text-tinta"
                     >
                         códice
                     </Link>

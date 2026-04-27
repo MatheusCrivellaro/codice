@@ -4,7 +4,7 @@ import { SearchIcon } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
-import { H1, H2 } from '@/components/ui/typography'
+import { H2 } from '@/components/ui/typography'
 import { BookCard } from '@/components/BookCard'
 import { AcademicAreaBadge } from '@/components/AcademicAreaBadge'
 import { Ornament } from '@/components/Ornament'
@@ -33,7 +33,7 @@ export function Home() {
         <div>
             {/* Hero */}
             <section className="container-codice flex flex-col items-center px-4 pt-20 pb-16">
-                <H1 className="text-4xl md:text-5xl">códice</H1>
+                <h1 className="brand-codice text-4xl text-tinta md:text-5xl">códice</h1>
                 <p className="mt-3 text-center font-body text-lg text-cinza-quente">
                     Livros usados com cuidado de bibliotecário.
                 </p>

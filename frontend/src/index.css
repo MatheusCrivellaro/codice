@@ -225,6 +225,16 @@
         padding-right: 1.5rem;
     }
 
+    /* Marca \"codice\" — Fraunces 400 puro com eixo optico alto e tracking
+       levemente aberto. Diferencia o nome da marca de qualquer outro H1
+       no site. Usar somente no nome literal \"codice\". */
+    .brand-codice {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-variation-settings: 'opsz' 144;
+        letter-spacing: 0.02em;
+    }
+
     /* Grid de cards do acervo — 2 colunas mobile, 3 tablet, 4 desktop,
        gap 24px. Usado em Home, SearchPage e qualquer listagem de livros. */
     .grid-acervo {
