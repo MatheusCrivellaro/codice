@@ -78,6 +78,19 @@ export function formatMessageDate(iso: string): string {
     return d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
+/**
+ * Numero de catalogo curto derivado do UUID. Proxy editorial para a marca
+ * de pagina de livro impresso ("No 0147"); nao representa numero sequencial
+ * real — o backend so expoe UUID. Quatro digitos sao suficientes pra
+ * legibilidade visual e estaveis para o mesmo livro entre sessoes.
+ */
+export function formatCatalogNumber(uuid: string): string {
+    const hex = uuid.replace(/[^0-9a-f]/gi, '').slice(0, 8)
+    if (hex.length === 0) return '0000'
+    const num = parseInt(hex, 16) % 10000
+    return num.toString().padStart(4, '0')
+}
+
 export function isSameDay(date1: string, date2: string): boolean {
     const d1 = new Date(date1)
     const d2 = new Date(date2)

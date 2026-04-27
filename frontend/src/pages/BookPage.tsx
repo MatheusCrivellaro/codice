@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
@@ -17,8 +17,38 @@ import { useBook } from '@/hooks/useBook'
 import { usePageTitle } from '@/hooks/usePageTitle'
 import { useAuth } from '@/contexts/auth-context'
 import { createInterest } from '@/api/interests'
-import { formatRelativeDate } from '@/lib/format'
+import { formatRelativeDate, formatCatalogNumber } from '@/lib/format'
 import type { ListingOfferResponse } from '@/api/books'
+
+// Substitui aspas retas (") por curvas tipograficas ("...") em texto
+// editorial e destaca cada aspa com cor bordo, peso medio. Aspas dentro
+// de aspas nao sao tratadas — sinopses raramente tem isso e a heuristica
+// alterna abertura/fechamento sequencialmente.
+function renderEditorialText(text: string): ReactNode[] {
+    const nodes: ReactNode[] = []
+    let buffer = ''
+    let nextIsOpen = true
+    let key = 0
+    for (const ch of text) {
+        if (ch === '"') {
+            if (buffer) {
+                nodes.push(buffer)
+                buffer = ''
+            }
+            const quote = nextIsOpen ? '“' : '”'
+            nodes.push(
+                <span key={key++} className="font-medium text-bordo">
+                    {quote}
+                </span>,
+            )
+            nextIsOpen = !nextIsOpen
+        } else {
+            buffer += ch
+        }
+    }
+    if (buffer) nodes.push(buffer)
+    return nodes
+}
 
 export function BookPage() {
     const { slug } = useParams<{ slug: string }>()
@@ -120,7 +150,10 @@ export function BookPage() {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                    <H1 className="text-3xl md:text-4xl">{book.title}</H1>
+                    <p className="font-heading text-[13px] italic tracking-[0.08em] text-cinza-quente">
+                        {book.slug}
+                    </p>
+                    <H1 className="mt-1 text-3xl md:text-4xl">{book.title}</H1>
                     <p className="mt-2 font-body text-base text-tinta-leve">{book.authors}</p>
 
                     <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-ui text-sm text-tinta-leve">
@@ -128,7 +161,11 @@ export function BookPage() {
                         {book.publicationYear && <span>{book.publicationYear}</span>}
                         {book.edition && <span>{book.edition}</span>}
                         {book.language && <span>{book.language}</span>}
-                        {book.translator && <span>Trad.: {book.translator}</span>}
+                        {book.translator && (
+                            <em className="font-serif font-normal italic">
+                                tradução de {book.translator}
+                            </em>
+                        )}
                         {book.isbn && <span>ISBN {book.isbn}</span>}
                     </div>
 
@@ -140,11 +177,15 @@ export function BookPage() {
                         </div>
                     )}
 
+                    <p className="mt-6 text-right font-ui text-[11px] tabular-nums tracking-[0.15em] text-cinza-quente">
+                        Nº {formatCatalogNumber(book.id)}
+                    </p>
+
                     {book.synopsis && (
-                        <Prose className="mt-6">
+                        <Prose className="mt-2">
                             {book.synopsis.split(/\n\s*\n/).map((paragraph, i) => (
                                 <p key={i} className={i === 0 ? 'drop-cap' : undefined}>
-                                    {paragraph}
+                                    {renderEditorialText(paragraph)}
                                 </p>
                             ))}
                         </Prose>
