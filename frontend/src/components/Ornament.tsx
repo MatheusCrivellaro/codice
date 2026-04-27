@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 
-type OrnamentVariant = 'rule' | 'double-rule' | 'fleuron'
+type OrnamentVariant = 'rule' | 'double-rule' | 'fleuron' | 'asterism' | 'dinkus'
 type OrnamentTone = 'bordo' | 'borda'
 
 interface OrnamentProps {
@@ -20,6 +20,29 @@ const LINE_TONE: Record<OrnamentTone, string> = {
 const FLEURON_TONE: Record<OrnamentTone, string> = {
     bordo: 'text-bordo/70 dark:text-bordo/55',
     borda: 'text-cinza-borda/70 dark:text-cinza-borda/45',
+}
+
+// Losango unitario reutilizado em fleuron, asterism e dinkus. Stroke 1,
+// fill none, miter — mesma familia visual em qualquer escala.
+function Lozenge({ size = 8 }: { size?: number }) {
+    const half = size / 2
+    const inset = size * 0.1
+    return (
+        <svg
+            viewBox={`0 0 ${size} ${size}`}
+            width={size}
+            height={size}
+            fill="none"
+            className="shrink-0"
+        >
+            <path
+                d={`M${half} ${inset} L${size - inset} ${half} L${half} ${size - inset} L${inset} ${half} Z`}
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinejoin="miter"
+            />
+        </svg>
+    )
 }
 
 export function Ornament({ variant = 'rule', tone = 'bordo', className }: OrnamentProps) {
@@ -48,28 +71,59 @@ export function Ornament({ variant = 'rule', tone = 'bordo', className }: Orname
         )
     }
 
+    if (variant === 'fleuron') {
+        return (
+            <div
+                role="separator"
+                aria-hidden="true"
+                className={cn('flex w-full items-center gap-4', className)}
+            >
+                <div className={cn('h-px flex-1', line)} />
+                <span className={cn(FLEURON_TONE[tone])}>
+                    <Lozenge size={13} />
+                </span>
+                <div className={cn('h-px flex-1', line)} />
+            </div>
+        )
+    }
+
+    if (variant === 'asterism') {
+        // Tres losangos em arranjo triangular (apex superior). Tradicional
+        // marca de fim-de-capitulo: pausa narrativa formal, sem linhas.
+        return (
+            <div
+                role="separator"
+                aria-hidden="true"
+                className={cn('flex w-full justify-center', className)}
+            >
+                <span className={cn('inline-flex flex-col items-center gap-1', FLEURON_TONE[tone])}>
+                    <Lozenge size={7} />
+                    <span className="inline-flex gap-3">
+                        <Lozenge size={7} />
+                        <Lozenge size={7} />
+                    </span>
+                </span>
+            </div>
+        )
+    }
+
+    // dinkus: tres losangos em linha horizontal centralizada — pausa
+    // narrativa mais leve, equivalente tipografico de "* * *".
     return (
         <div
             role="separator"
             aria-hidden="true"
-            className={cn('flex w-full items-center gap-4', className)}
+            className={cn('flex w-full items-center justify-center gap-3', className)}
         >
-            <div className={cn('h-px flex-1', line)} />
-            <svg
-                viewBox="0 0 14 14"
-                width="13"
-                height="13"
-                fill="none"
-                className={cn('shrink-0', FLEURON_TONE[tone])}
-            >
-                <path
-                    d="M7 1.2 L12.8 7 L7 12.8 L1.2 7 Z"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    strokeLinejoin="miter"
-                />
-            </svg>
-            <div className={cn('h-px flex-1', line)} />
+            <span className={cn(FLEURON_TONE[tone])}>
+                <Lozenge size={7} />
+            </span>
+            <span className={cn(FLEURON_TONE[tone])}>
+                <Lozenge size={7} />
+            </span>
+            <span className={cn(FLEURON_TONE[tone])}>
+                <Lozenge size={7} />
+            </span>
         </div>
     )
 }

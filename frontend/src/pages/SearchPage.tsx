@@ -331,7 +331,7 @@ export function SearchPage() {
                             </div>
 
                             {data.totalPages > 1 && (
-                                <div className="mt-10 flex items-center justify-center gap-3">
+                                <div className="mt-10 flex items-center justify-center gap-4">
                                     <Button
                                         variant="ghost"
                                         size="sm"
@@ -340,9 +340,23 @@ export function SearchPage() {
                                     >
                                         Anterior
                                     </Button>
-                                    <span className="type-uiserif num-oldstyle text-sm tracking-[0.05em] text-tinta-leve">
-                                        página <span className="text-bordo">{page + 1}</span> de {data.totalPages}
-                                    </span>
+                                    {/* Numero da pagina atual em type-display
+                                        opsz alto, oldstyle. Filete vertical
+                                        curto separa do total em type-uiserif
+                                        — a hierarquia visual do livro: numero
+                                        de pagina grande, total como nota. */}
+                                    <div className="flex items-baseline gap-3 px-1">
+                                        <span className="type-display num-oldstyle text-2xl leading-none text-bordo md:text-3xl">
+                                            {page + 1}
+                                        </span>
+                                        <span
+                                            aria-hidden="true"
+                                            className="h-5 w-px self-center bg-cinza-borda/60 md:h-6"
+                                        />
+                                        <span className="type-uiserif num-oldstyle text-sm tracking-[0.05em] text-cinza-quente">
+                                            de {data.totalPages}
+                                        </span>
+                                    </div>
                                     <Button
                                         variant="ghost"
                                         size="sm"

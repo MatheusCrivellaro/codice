@@ -11,6 +11,7 @@ import { Ornament } from '@/components/Ornament'
 import { useBookSearch } from '@/hooks/useBookSearch'
 import { useAcademicAreas } from '@/hooks/useAcademicAreas'
 import { usePageTitle } from '@/hooks/usePageTitle'
+import { useReveal } from '@/hooks/useReveal'
 
 export function Home() {
     usePageTitle()
@@ -18,6 +19,8 @@ export function Home() {
     const [searchInput, setSearchInput] = useState('')
     const { data: booksData, isLoading: booksLoading } = useBookSearch({ sort: 'newest', size: 8 })
     const { data: areas = [] } = useAcademicAreas()
+    const curadoria = useReveal<HTMLElement>()
+    const areasReveal = useReveal<HTMLElement>()
 
     function handleSearch(e: React.FormEvent) {
         e.preventDefault()
@@ -65,7 +68,10 @@ export function Home() {
             </div>
 
             {/* Curadoria */}
-            <section className="container-codice pt-10 pb-12">
+            <section
+                ref={curadoria.ref}
+                className={`reveal-target container-codice pt-10 pb-12 ${curadoria.revealed ? 'is-visible' : ''}`}
+            >
                 <div className="mb-6 flex items-end justify-between">
                     <H2 className="text-2xl md:text-[28px]">No acervo agora</H2>
                 </div>
@@ -104,7 +110,10 @@ export function Home() {
 
             {/* Áreas */}
             {areas.length > 0 && (
-                <section className="container-codice pt-4 pb-16">
+                <section
+                    ref={areasReveal.ref}
+                    className={`reveal-target container-codice pt-4 pb-16 ${areasReveal.revealed ? 'is-visible' : ''}`}
+                >
                     <Ornament variant="rule" className="mb-10" />
                     <H2 className="mb-6 text-2xl md:text-[28px]">Áreas de destaque</H2>
                     <div className="flex flex-wrap gap-2">

@@ -227,6 +227,11 @@
     to { opacity: 1; transform: translateX(0); }
 }
 
+@keyframes reveal-up {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 @layer components {
     /* Bloco de leitura longa — sinopses, descrições, textos editoriais.
        Numerais old-style ('onum') — desenhados com altura-x e descendentes,
@@ -368,6 +373,20 @@
     .page-in-right { animation: page-in-right 160ms ease-out; }
     .page-in-left { animation: page-in-left 160ms ease-out; }
 
+    /* Revelacao progressiva — opacity + translateY 6px, 200ms ease-out.
+       Estado inicial invisivel; quando .is-visible eh adicionada (via
+       useReveal/IntersectionObserver), roda a animacao uma vez forwards.
+       Usado em seccoes verticais da Home. Limite duro: sem stagger,
+       sem parallax, sem repeticao. prefers-reduced-motion neutraliza. */
+    .reveal-target {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    .reveal-target.is-visible {
+        animation: reveal-up 200ms ease-out forwards;
+    }
+
     /* Capitular iluminada — primeira letra de paragrafo editorial.
        Fraunces eixo optico alto, ~3 linhas de altura, bordo no light /
        dourado no dark via token. */
@@ -415,6 +434,15 @@
 
     .page-in-right,
     .page-in-left {
+        animation: none;
+    }
+
+    /* reveal-target: estado inicial invisivel precisa de override
+       explicito — neutralizar animation nao revela o conteudo. */
+    .reveal-target,
+    .reveal-target.is-visible {
+        opacity: 1;
+        transform: none;
         animation: none;
     }
 }

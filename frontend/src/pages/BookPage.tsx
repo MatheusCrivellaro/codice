@@ -129,21 +129,51 @@ export function BookPage() {
                     <H1 className="mt-1 text-3xl md:text-4xl">{book.title}</H1>
                     <p className="mt-2 font-body text-base text-tinta-leve">{book.authors}</p>
 
-                    <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-ui text-sm text-tinta-leve">
-                        {book.publisher && <span>{book.publisher}</span>}
-                        {book.publicationYear && <span>{book.publicationYear}</span>}
-                        {book.edition && (
-                            <em className="font-serif font-normal italic">
-                                {formatEdition(book.edition)}
-                            </em>
-                        )}
-                        {book.language && <span>{book.language}</span>}
-                        {book.translator && (
-                            <em className="font-serif font-normal italic">
-                                tradução de {book.translator}
-                            </em>
-                        )}
-                        {book.isbn && <span>ISBN {book.isbn}</span>}
+                    {/* Marginalia editorial — ficha catalografica curta.
+                        Cada metadado vira "entrada" com label small-caps em
+                        type-uiserif num-lining (cinza-quente) e valor em
+                        type-uiserif num-oldstyle. Rule fino acima separa
+                        do bloco de autoria. Idioma omitido quando default
+                        (pt-BR) — bibliotecario nao etiqueta o obvio. */}
+                    <div className="mt-5 border-t border-cinza-borda/50 pt-3">
+                        <dl className="flex flex-wrap gap-x-5 gap-y-1.5 type-uiserif text-sm text-tinta-leve">
+                            {book.publisher && (
+                                <div className="inline-flex items-baseline gap-1.5">
+                                    <dt className="num-lining text-[10px] uppercase tracking-[0.12em] text-cinza-quente">editora</dt>
+                                    <dd className="num-oldstyle">{book.publisher}</dd>
+                                </div>
+                            )}
+                            {book.publicationYear && (
+                                <div className="inline-flex items-baseline gap-1.5">
+                                    <dt className="num-lining text-[10px] uppercase tracking-[0.12em] text-cinza-quente">ano</dt>
+                                    <dd className="num-oldstyle">{book.publicationYear}</dd>
+                                </div>
+                            )}
+                            {book.edition && (
+                                <div className="inline-flex items-baseline gap-1.5">
+                                    <dt className="num-lining text-[10px] uppercase tracking-[0.12em] text-cinza-quente">edição</dt>
+                                    <dd className="num-oldstyle italic">{formatEdition(book.edition)}</dd>
+                                </div>
+                            )}
+                            {book.language && book.language !== 'pt-BR' && (
+                                <div className="inline-flex items-baseline gap-1.5">
+                                    <dt className="num-lining text-[10px] uppercase tracking-[0.12em] text-cinza-quente">idioma</dt>
+                                    <dd>{book.language}</dd>
+                                </div>
+                            )}
+                            {book.translator && (
+                                <div className="inline-flex items-baseline gap-1.5">
+                                    <dt className="num-lining text-[10px] uppercase tracking-[0.12em] text-cinza-quente">tradução</dt>
+                                    <dd className="italic">{book.translator}</dd>
+                                </div>
+                            )}
+                            {book.isbn && (
+                                <div className="inline-flex items-baseline gap-1.5">
+                                    <dt className="num-lining text-[10px] uppercase tracking-[0.12em] text-cinza-quente">ISBN</dt>
+                                    <dd className="num-lining">{book.isbn}</dd>
+                                </div>
+                            )}
+                        </dl>
                     </div>
 
                     {book.academicAreas.length > 0 && (
@@ -154,7 +184,7 @@ export function BookPage() {
                         </div>
                     )}
 
-                    <p className="mt-6 text-right font-ui text-[11px] tabular-nums tracking-[0.15em] text-cinza-quente">
+                    <p className="mt-6 text-right type-uiserif num-lining text-[11px] tracking-[0.15em] text-cinza-quente">
                         Nº {formatCatalogNumber(book.id)}
                     </p>
 
@@ -172,7 +202,10 @@ export function BookPage() {
 
             {/* Offers */}
             <div className="mt-12">
-                <Ornament variant="fleuron" className="mb-10 mx-auto max-w-[460px]" />
+                {/* Asterismo: fim do conteudo editorial do livro como obra,
+                    inicio do bloco transacional dos exemplares. Pausa
+                    formal — mais forte que fleuron. */}
+                <Ornament variant="asterism" className="mb-10" />
                 <H2 className="text-xl md:text-2xl">
                     {book.listings.length === 0
                         ? 'Ofertas disponíveis'
