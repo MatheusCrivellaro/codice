@@ -196,7 +196,9 @@ export function AppShell() {
                                 />
                             </form>
 
-                            <nav className="mt-4 flex flex-col">
+                            <Ornament variant="double-rule" tone="borda" className="mt-5" />
+
+                            <nav className="mt-5 flex flex-col">
                                 <Link
                                     to="/buscar"
                                     onClick={closeMenu}
