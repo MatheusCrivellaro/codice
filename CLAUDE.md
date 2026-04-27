@@ -1,82 +1,62 @@
-# Códice — Instruções para Claude Code
+# Códice — instruções para Claude Code
 
-## Sobre o projeto
+Marketplace de livros usados, solo founder, boring tech, MVP enxuto. Antes de qualquer ação nesta sessão, confirme que leu este arquivo respondendo com o plano da tarefa.
 
-Marketplace brasileiro de livros usados com foco em obras acadêmicas, clássicos e edições raras. Identidade bibliófila, calma e premium. Solo founder, orçamento contido, MVP enxuto com fundação escalável.
+## Documentos de referência
 
-Documento Mestre completo em `docs/Codice_Documento_Mestre.pdf`. Briefs de marca em `docs/Codice_Brief_Logo.pdf` e `docs/Codice_Brief_Livro_dos_Livros.pdf`.
+- `codice-technical-reference.md` — estado atual do código (stack, schema, endpoints, estrutura de pastas). Atualize ao final de mudança estrutural.
+- `codice-brand-reference.md` — síntese operacional de identidade visual, tom de voz e mascote. Fonte de verdade para paleta, tipografia e vocabulário.
+- `docs/Codice_Documento_Mestre.pdf`, `docs/Codice_Brief_Livro_dos_Livros.pdf`, `docs/Codice_Brief_Logo.pdf` — documentos canônicos. Consulte se o `.md` de brand não cobrir.
 
-## Stack
+Antes de discutir schema, endpoint ou estrutura, leia o `technical-reference`. Antes de discutir cor, fonte, copy ou ilustração, leia o `brand-reference`. Não invente o que está nesses arquivos.
 
-**Backend** (`backend/`):
-- Java 21, Spring Boot 3.x, Maven
-- Spring Data JPA + Hibernate, Flyway, Spring Security, Bean Validation
-- PostgreSQL 16 (com extensões `pg_trgm` e `pgvector`)
-- Testes: JUnit 5 + Testcontainers
-- Package base: `br.com.codice.api`
+## Protocolo de sessão
 
-**Frontend** (`frontend/`):
-- Vite + React 18 + TypeScript
-- Tailwind CSS v4, shadcn/ui (style: new-york, base: neutral)
-- TanStack Query, React Router, React Hook Form + Zod
-- Path alias: `@/*` → `src/*`
+1. No início de toda tarefa, devolva o **plano** antes de editar arquivos: o que vai mudar, em quais arquivos, e o que fica fora do escopo. Espere confirmação ou siga se eu disser "executa".
+2. Se faltar informação crítica, pergunte antes de chutar. Não invente nome de biblioteca, versão, API, função do projeto ou convenção que você não viu.
+3. Ao terminar, liste o que foi alterado e o checklist de verificação (o que eu devo testar). Sugira a mensagem de commit em Conventional Commits.
+4. Bug latente fora do escopo: apontar, não consertar sem permissão.
 
-**Infra** (`infra/`):
-- Docker Compose com Postgres 16 local (porta 5432)
-- Produção: Railway (API + DB), Vercel (web), Cloudflare R2 (fotos)
+## Regras duras
 
-## Convenções
+- Nunca rode `flyway:clean`, `DROP DATABASE`, `rm -rf` fora do diretório do projeto, ou comando que apague dado sem eu pedir explicitamente.
+- Nunca altere migration já commitada. Novo estado = nova `V{n}__descricao.sql`.
+- `spring.jpa.hibernate.ddl-auto` é `validate`. Hibernate valida, nunca altera schema. Se precisar mudar, é via Flyway.
+- Preço em `INTEGER` (centavos), nunca `DECIMAL` nem float.
+- Nunca armazene secret em código. Variável de ambiente, sempre.
+- Sem emojis em código, commit, UI, copy de produto ou documentação.
+- Sem comentário óbvio no código. Comentário explica *porquê*, não *o quê*.
 
-**Commits:** Conventional Commits em português quando possível.
-Exemplos: `feat(backend): cadastro de usuário com JWT`, `fix(frontend): corrige CORS no dev`, `chore: atualiza deps`.
+## Convenções de código
 
-**Branches:** trabalho direto em `main` nesta fase (solo founder, sem PRs formais).
+Detalhe completo no `technical-reference` §10. Resumo operacional:
 
-**Nomes de arquivo:**
-- Backend: pacotes em `snake_case` é *não*; seguir convenção Java (`camelCase` pra variáveis, `PascalCase` pra classes).
-- Frontend: componentes em `PascalCase.tsx`, hooks em `useCamelCase.ts`, utilidades em `kebab-case.ts`.
+**Backend.** Records para DTOs. Constructor injection, nunca `@Autowired` em campo. `@Valid` + Bean Validation. `@Transactional` no service, nunca no controller. Sem Lombok. Migrations `V{n}__descricao_em_snake_case.sql`.
 
-**Estilo Java:**
-- Records pra DTOs sempre que possível.
-- Constructor injection (sem `@Autowired` em campo).
-- Validação com `@Valid` + Bean Validation.
-- Nunca usar `ddl-auto: update`. Schema é domínio do Flyway.
-- Migrations versionadas com padrão `V{n}__descricao_em_snake_case.sql`.
+**Frontend.** `function Component()`, nunca arrow function para componentes. Imports absolutos com `@/`. `any` só com justificativa em comentário. Estado de servidor via TanStack Query, não `useState`. Formulários via React Hook Form + Zod. Estilos via Tailwind + tokens da marca, nunca CSS inline fora de casos excepcionais.
 
-**Estilo TypeScript:**
-- Prefira `function Component()` a `const Component = () =>`.
-- Imports absolutos com `@/`.
-- Tipagem estrita, `any` só com justificativa em comentário.
+**Git.** Conventional Commits em português: `feat(backend): adiciona endpoint X`, `fix(frontend): corrige Y`, `chore: Z`. Trabalho direto em `main`.
 
-## Restrições técnicas
+## Decisões arquiteturais fechadas
 
-- **Boring tech vence.** Não introduzir bibliotecas novas sem necessidade clara. Se existe solução com o que já está no projeto, usar.
-- **Tier gratuito primeiro.** Qualquer serviço pago precisa de justificativa explícita.
-- **Fundação escalável, MVP enxuto.** Não construir hoje o que não foi validado, mas estruturar de forma que crescer não exija reescrever.
+Não reabra sem eu pedir. Detalhe em `technical-reference` §13.
 
-## Identidade visual (referência rápida)
+- Book e Listing são entidades separadas. Book é a obra canônica, Listing é uma oferta. Múltiplos listings apontam para o mesmo book.
+- ISBN é nullable. Livros raros não têm. Fuzzy match por pg_trgm resolve duplicatas.
+- Seller é tabela separada de User, 1:1 opcional. Nem todo user é seller.
+- Listing nasce `PENDING_REVIEW`. Moderação manual é diferencial, não atrito acidental.
+- Mensageria por polling (15s threads, 5s chat ativo). WebSocket fica para depois.
+- Upload via presigned URL direto no R2. Backend não toca no arquivo.
+- JWT em localStorage é dívida consciente do MVP. Não migre para cookie httpOnly sem eu pedir.
 
-Paleta principal:
-- Papel `#F7F3EC` — fundo claro
-- Papel profundo `#EFE8DA`
-- Tinta `#2A2420` — texto principal
-- Bordô `#7A2E2E` — destaque (light mode)
-- Dourado `#B89968` — destaque (dark mode)
-- Cinza-quente `#A89F92`
+## Princípios de trabalho
 
-Tipografia (quando entrar no projeto): Fraunces (títulos), Source Serif 4 (leitura longa), Inter (UI).
+1. **Boring tech vence.** Não introduza biblioteca nova sem necessidade clara. Se o projeto já resolve, use o que existe.
+2. **Caminho simples primeiro.** Proponha a solução mais direta. Só apresente a versão sofisticada se eu pedir, ou se a simples tiver defeito grave que eu precise saber.
+3. **MVP enxuto, fundação escalável.** Não construa hoje o que não foi validado. Mas não feche porta que custe caro abrir depois.
+4. **Fricção construtiva.** Se meu pedido contradiz algo dos documentos, está errado, ou é over-engineering, aponte antes de executar. Não concorde automaticamente.
+5. **Opinião, não lista neutra.** Quando eu pedir recomendação, tome posição, justifique, mencione o que pode dar errado.
 
-Tom de voz: caloroso-sóbrio. Vocabulário de biblioteca, não de e-commerce. "Estante" em vez de "carrinho", "acervo" em vez de "catálogo", "levar este livro" em vez de "comprar".
+## Fora de escopo permanente no MVP
 
-## Fase atual
-
-Fase 0 (Fundação Técnica) → Fase 1 (MVP Público).
-
-Ver roteiro de milestones no histórico da conversa. O protótipo **não** tem pagamento, logística, app mobile, recomendação algorítmica. Handoff vendedor↔comprador ainda a definir (mensageria interna provável).
-
-## O que evitar
-
-- Não inventar nomes de bibliotecas, APIs ou versões. Em caso de dúvida, perguntar.
-- Não inflar o escopo de um milestone. Se surgir algo fora do objetivo declarado, apontar e seguir.
-- Não criar abstrações "pro futuro" — só o que serve ao milestone atual.
-- Não usar emojis em código, commit, UI ou documentação.
+Pagamento real, gateway, checkout, integração Correios, avaliação pós-compra, RAG do Livro dos Livros, biblioteca pessoal, favoritos, email transacional, edição de listing/perfil, reset de senha, verificação de email, OAuth, refresh token, PWA, OCR, recomendação por ML. Lista completa em `technical-reference` §12. Se meu pedido tocar nesses itens, confirme antes — provavelmente é coisa de Fase 2+.
