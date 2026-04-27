@@ -11,6 +11,7 @@ import { H1, H2, Prose } from '@/components/ui/typography'
 import { AcademicAreaBadge } from '@/components/AcademicAreaBadge'
 import { ConditionBadge } from '@/components/ConditionBadge'
 import { PhotoGallery } from '@/components/PhotoGallery'
+import { Ornament } from '@/components/Ornament'
 import { useBook } from '@/hooks/useBook'
 import { usePageTitle } from '@/hooks/usePageTitle'
 import { useAuth } from '@/contexts/auth-context'
@@ -148,6 +149,7 @@ export function BookPage() {
 
             {/* Offers */}
             <div className="mt-12">
+                <Ornament variant="fleuron" className="mb-10 mx-auto max-w-[460px]" />
                 <H2 className="text-xl md:text-2xl">
                     {book.listings.length === 0
                         ? 'Ofertas disponíveis'

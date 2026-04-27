@@ -10,6 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Separator } from '@/components/ui/separator'
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { BookCard } from '@/components/BookCard'
+import { Ornament } from '@/components/Ornament'
 import { useBookSearch } from '@/hooks/useBookSearch'
 import { useAcademicAreas } from '@/hooks/useAcademicAreas'
 import { useActiveStates } from '@/hooks/useActiveStates'
@@ -219,7 +220,7 @@ export function SearchPage() {
                 </aside>
 
                 <div className="min-w-0 flex-1">
-                    <div className="mb-6 flex items-center justify-between gap-3">
+                    <div className="mb-4 flex items-center justify-between gap-3">
                         <p className="font-ui text-sm text-cinza-quente">
                             {data
                                 ? `${data.totalElements} livro${data.totalElements !== 1 ? 's' : ''} encontrado${data.totalElements !== 1 ? 's' : ''}`
@@ -257,6 +258,8 @@ export function SearchPage() {
                             </Select>
                         </div>
                     </div>
+
+                    <Ornament variant="rule" className="mb-8" />
 
                     {isLoading ? (
                         <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">

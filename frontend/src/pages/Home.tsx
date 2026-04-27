@@ -7,6 +7,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { H1, H2 } from '@/components/ui/typography'
 import { BookCard } from '@/components/BookCard'
 import { AcademicAreaBadge } from '@/components/AcademicAreaBadge'
+import { Ornament } from '@/components/Ornament'
 import { useBookSearch } from '@/hooks/useBookSearch'
 import { useAcademicAreas } from '@/hooks/useAcademicAreas'
 import { usePageTitle } from '@/hooks/usePageTitle'
@@ -59,8 +60,12 @@ export function Home() {
                 </p>
             </section>
 
+            <div className="container-codice">
+                <Ornament variant="fleuron" className="mx-auto max-w-[420px]" />
+            </div>
+
             {/* Curadoria */}
-            <section className="container-codice pt-6 pb-12">
+            <section className="container-codice pt-10 pb-12">
                 <div className="mb-6 flex items-end justify-between">
                     <H2 className="text-2xl md:text-[28px]">No acervo agora</H2>
                 </div>
@@ -100,6 +105,7 @@ export function Home() {
             {/* Áreas */}
             {areas.length > 0 && (
                 <section className="container-codice pt-4 pb-16">
+                    <Ornament variant="rule" className="mb-10" />
                     <H2 className="mb-6 text-2xl md:text-[28px]">Áreas de destaque</H2>
                     <div className="flex flex-wrap gap-2">
                         {areas.map((area) => (

@@ -12,6 +12,7 @@ import {
     SheetTrigger,
 } from '@/components/ui/sheet'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { Ornament } from '@/components/Ornament'
 import { useTheme, type Theme } from '@/hooks/useTheme'
 
 const THEME_OPTIONS: { value: Theme; label: string }[] = [
@@ -275,9 +276,10 @@ export function AppShell() {
                 <Outlet />
             </main>
 
-            <footer className="mt-auto border-t border-cinza-borda bg-papel-profundo">
-                <div className="container-codice py-12 text-center">
-                    <p className="font-ui text-[13px] text-cinza-quente">
+            <footer className="mt-auto bg-papel-profundo">
+                <div className="container-codice py-12">
+                    <Ornament variant="double-rule" className="mx-auto mb-8 max-w-[280px]" />
+                    <p className="text-center font-ui text-[13px] text-cinza-quente">
                         Códice — livros usados com cuidado de bibliotecário.
                     </p>
                 </div>
