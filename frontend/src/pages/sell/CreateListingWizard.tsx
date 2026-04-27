@@ -32,7 +32,7 @@ export type WizardPhotoData = UploadedPhoto
 const STEPS = ['Livro', 'Detalhes', 'Fotos', 'Revisão']
 
 export function CreateListingWizard() {
-    usePageTitle('Anunciar um livro')
+    usePageTitle('anunciar um livro')
     const navigate = useNavigate()
     const [step, setStep] = useState(1)
     const [bookData, setBookData] = useState<WizardBookData>({})
@@ -94,7 +94,7 @@ export function CreateListingWizard() {
 
     return (
         <div className="container-codice max-w-[640px] py-8">
-            <h1 className="mb-8 font-display text-3xl text-tinta">Anunciar um livro</h1>
+            <h1 className="mb-8 font-display text-3xl text-tinta">anunciar um livro</h1>
             <div className="mb-10">
                 <Stepper steps={STEPS} currentStep={step} />
             </div>

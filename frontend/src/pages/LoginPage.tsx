@@ -13,7 +13,7 @@ import { Ornament } from '@/components/Ornament'
 import { usePageTitle } from '@/hooks/usePageTitle'
 
 export function LoginPage() {
-    usePageTitle('Entrar')
+    usePageTitle('entrar')
     const { login } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
@@ -46,7 +46,7 @@ export function LoginPage() {
             <Card className="w-full max-w-md">
                 <CardHeader>
                     <CardTitle className="font-display text-2xl text-tinta">
-                        Entrar no acervo
+                        entrar no acervo
                     </CardTitle>
                     <CardDescription className="font-body">
                         Acesse sua conta para explorar o acervo.

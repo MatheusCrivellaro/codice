@@ -18,7 +18,7 @@ const statusVariant: Record<string, 'default' | 'secondary' | 'outline' | 'destr
 }
 
 export function MyListings() {
-    usePageTitle('Minhas ofertas')
+    usePageTitle('minhas ofertas')
     const [page, setPage] = useState(0)
 
     const { data, isLoading } = useQuery({
@@ -29,7 +29,7 @@ export function MyListings() {
     return (
         <div className="mx-auto max-w-2xl px-4 py-8">
             <div className="mb-6 flex items-center justify-between">
-                <h1 className="font-display text-2xl text-tinta">Minhas ofertas</h1>
+                <h1 className="font-display text-2xl text-tinta">minhas ofertas</h1>
                 <Button asChild>
                     <Link to="/vender/novo">Anunciar um livro</Link>
                 </Button>

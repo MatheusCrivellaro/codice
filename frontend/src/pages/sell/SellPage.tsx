@@ -10,7 +10,7 @@ import { SellerDashboard } from '@/pages/sell/SellerDashboard'
 import * as listingsApi from '@/api/listings'
 
 export function SellPage() {
-    usePageTitle('Anunciar')
+    usePageTitle('anunciar')
     const { user } = useAuth()
 
     if (user?.profileType === 'BUYER') {

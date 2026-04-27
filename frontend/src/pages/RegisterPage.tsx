@@ -42,7 +42,7 @@ const PROFILE_OPTIONS = [
 ]
 
 export function RegisterPage() {
-    usePageTitle('Criar conta')
+    usePageTitle('criar conta')
     const { register: registerUser } = useAuth()
     const navigate = useNavigate()
     const [privacyOpen, setPrivacyOpen] = useState(false)
@@ -75,7 +75,7 @@ export function RegisterPage() {
             <Card className="w-full max-w-lg">
                 <CardHeader>
                     <CardTitle className="font-display text-2xl text-tinta">
-                        Criar uma conta
+                        criar uma conta
                     </CardTitle>
                     <CardDescription className="font-body">
                         Junte-se ao acervo. Escolha como deseja participar.

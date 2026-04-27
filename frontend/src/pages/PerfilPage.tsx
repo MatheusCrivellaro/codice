@@ -16,7 +16,7 @@ function getInitials(name: string): string {
 }
 
 export function PerfilPage() {
-    usePageTitle('Meu perfil')
+    usePageTitle('meu perfil')
     const { user, logout } = useAuth()
 
     if (!user) return null

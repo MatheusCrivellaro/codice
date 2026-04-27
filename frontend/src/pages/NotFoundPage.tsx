@@ -4,7 +4,7 @@ import { LivroDosLivrosSeal } from '@/components/LivroDosLivrosSeal'
 import { usePageTitle } from '@/hooks/usePageTitle'
 
 export function NotFoundPage() {
-    usePageTitle('Página não encontrada')
+    usePageTitle('página não encontrada')
 
     return (
         <div className="container-codice flex min-h-[60vh] flex-col items-center justify-center py-16 text-center">

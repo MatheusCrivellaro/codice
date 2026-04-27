@@ -23,14 +23,14 @@ const threadStatusVariant: Record<string, 'default' | 'secondary' | 'outline'> =
 }
 
 export function ConversationsPage() {
-    usePageTitle('Conversas')
+    usePageTitle('conversas')
     const [page, setPage] = useState(0)
     const { data, isLoading, isError } = useThreads(page)
 
     if (isLoading) {
         return (
             <div className="container-codice max-w-[680px] py-8">
-                <h1 className="font-display text-3xl text-tinta">Conversas</h1>
+                <h1 className="font-display text-3xl text-tinta">conversas</h1>
                 <Ornament variant="rule" className="mt-3 mb-6" />
                 <div className="space-y-3">
                     {Array.from({ length: 4 }).map((_, i) => (
@@ -53,7 +53,7 @@ export function ConversationsPage() {
 
     return (
         <div className="container-codice max-w-[680px] py-8">
-            <h1 className="mb-6 font-display text-3xl text-tinta">Conversas</h1>
+            <h1 className="mb-6 font-display text-3xl text-tinta">conversas</h1>
 
             {threads.length === 0 ? (
                 <div className="flex flex-col items-center py-16 text-center">

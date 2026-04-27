@@ -31,7 +31,7 @@ const SORT_OPTIONS = [
 const FILTER_LABEL = 'mb-3 font-ui text-xs font-medium uppercase tracking-wider text-cinza-quente'
 
 export function SearchPage() {
-    usePageTitle('Acervo')
+    usePageTitle('acervo')
     const [searchParams, setSearchParams] = useSearchParams()
     const [searchInput, setSearchInput] = useState(searchParams.get('q') ?? '')
     const [showAllAreas, setShowAllAreas] = useState(false)
