@@ -4,7 +4,8 @@ import { useQuery } from '@tanstack/react-query'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { formatPrice, formatCondition, formatListingStatus } from '@/lib/format'
+import { Price } from '@/components/Price'
+import { formatCondition, formatListingStatus } from '@/lib/format'
 import { usePageTitle } from '@/hooks/usePageTitle'
 import * as listingsApi from '@/api/listings'
 
@@ -51,9 +52,7 @@ export function MyListings() {
                                     <div className="min-w-0 flex-1">
                                         <p className="font-medium text-tinta">{listing.bookTitle}</p>
                                         <div className="mt-1 flex flex-wrap items-center gap-2 text-sm">
-                                            <span className="font-display text-lg text-bordo">
-                                                {formatPrice(listing.priceCents)}
-                                            </span>
+                                            <Price cents={listing.priceCents} size="lg" className="text-bordo" />
                                             <span className="text-tinta-leve">
                                                 {formatCondition(listing.condition)}
                                             </span>

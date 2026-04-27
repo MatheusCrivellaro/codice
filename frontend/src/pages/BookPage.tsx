@@ -12,11 +12,12 @@ import { AcademicAreaBadge } from '@/components/AcademicAreaBadge'
 import { ConditionBadge } from '@/components/ConditionBadge'
 import { PhotoGallery } from '@/components/PhotoGallery'
 import { Ornament } from '@/components/Ornament'
+import { Price } from '@/components/Price'
 import { useBook } from '@/hooks/useBook'
 import { usePageTitle } from '@/hooks/usePageTitle'
 import { useAuth } from '@/contexts/auth-context'
 import { createInterest } from '@/api/interests'
-import { formatPrice, formatRelativeDate } from '@/lib/format'
+import { formatRelativeDate } from '@/lib/format'
 import type { ListingOfferResponse } from '@/api/books'
 
 export function BookPage() {
@@ -168,14 +169,20 @@ export function BookPage() {
                     </p>
                 ) : (
                     <div className="mt-6 space-y-4">
-                        {book.listings.map((offer) => (
+                        {(() => {
+                            const minPrice = Math.min(...book.listings.map((l) => l.priceCents))
+                            const showAsterisk = book.listings.length > 1
+                            return book.listings.map((offer) => (
                             <div key={offer.id} className="rounded-lg bg-papel-profundo p-5 ring-1 ring-cinza-borda">
                                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                                     <div className="min-w-0 flex-1 space-y-2">
                                         <div className="flex flex-wrap items-center gap-3">
-                                            <span className="font-display text-2xl text-bordo">
-                                                {formatPrice(offer.priceCents)}
-                                            </span>
+                                            <Price
+                                                cents={offer.priceCents}
+                                                size="xl"
+                                                className="text-bordo"
+                                                asterisk={showAsterisk && offer.priceCents === minPrice}
+                                            />
                                             <ConditionBadge condition={offer.condition} />
                                             {offer.interestCount > 0 && (
                                                 <span className="font-ui text-xs text-cinza-quente">
@@ -222,7 +229,8 @@ export function BookPage() {
                                     </div>
                                 </div>
                             </div>
-                        ))}
+                            ))
+                        })()}
                     </div>
                 )}
             </div>
@@ -238,7 +246,7 @@ export function BookPage() {
                             <div className="rounded-md bg-papel-profundo p-3 ring-1 ring-cinza-borda">
                                 <p className="font-display text-base text-tinta">{book.title}</p>
                                 <p className="font-ui text-sm text-tinta-leve">
-                                    <span className="font-display text-bordo">{formatPrice(interestTarget.priceCents)}</span> — {interestTarget.conditionLabel} — {interestTarget.sellerName}
+                                    <Price cents={interestTarget.priceCents} size="md" className="text-bordo" /> — {interestTarget.conditionLabel} — {interestTarget.sellerName}
                                 </p>
                             </div>
                             <Textarea

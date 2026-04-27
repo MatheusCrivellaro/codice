@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { BookOpenIcon } from 'lucide-react'
 import type { BookSearchResult } from '@/api/books'
-import { formatPrice } from '@/lib/format'
 import { AcademicAreaBadge } from '@/components/AcademicAreaBadge'
+import { Price } from '@/components/Price'
 
 interface BookCardProps {
     book: BookSearchResult
@@ -41,10 +41,13 @@ export function BookCard({ book }: BookCardProps) {
                 </p>
                 <div className="mt-2 flex items-baseline gap-1.5">
                     {book.lowestPriceCents != null && (
-                        <span className="font-display text-[15px] text-bordo">
-                            {hasMultipleOffers
-                                ? `a partir de ${formatPrice(book.lowestPriceCents)}`
-                                : formatPrice(book.lowestPriceCents)}
+                        <span className="inline-flex items-baseline gap-1 text-bordo">
+                            {hasMultipleOffers && (
+                                <span className="font-ui text-[12px] text-cinza-quente">
+                                    a partir de
+                                </span>
+                            )}
+                            <Price cents={book.lowestPriceCents} size="sm" />
                         </span>
                     )}
                 </div>

@@ -6,7 +6,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { Textarea } from '@/components/ui/textarea'
 import * as adminApi from '@/api/admin'
 import type { AdminListing } from '@/api/admin'
-import { formatPrice, formatCondition } from '@/lib/format'
+import { Price } from '@/components/Price'
+import { formatCondition } from '@/lib/format'
 
 export function ModerationQueue() {
     const queryClient = useQueryClient()
@@ -80,10 +81,8 @@ export function ModerationQueue() {
                                 <p className="mt-1 text-sm text-tinta-leve">
                                     Vendedor: {listing.sellerName}
                                 </p>
-                                <div className="mt-2 flex flex-wrap gap-3 text-sm">
-                                    <span className="font-display text-lg text-bordo">
-                                        {formatPrice(listing.priceCents)}
-                                    </span>
+                                <div className="mt-2 flex flex-wrap items-baseline gap-3 text-sm">
+                                    <Price cents={listing.priceCents} size="lg" className="text-bordo" />
                                     <span className="text-tinta-leve">
                                         {formatCondition(listing.condition)}
                                     </span>

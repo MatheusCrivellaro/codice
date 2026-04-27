@@ -16,7 +16,8 @@ import {
 } from '@/components/ui/table'
 import * as adminApi from '@/api/admin'
 import type { AdminListing, ListingStatus } from '@/api/admin'
-import { formatPrice, formatCondition, formatListingStatus } from '@/lib/format'
+import { Price } from '@/components/Price'
+import { formatCondition, formatListingStatus } from '@/lib/format'
 
 const statusFilters: { value: string; label: string }[] = [
     { value: 'ALL', label: 'Todos' },
@@ -183,8 +184,8 @@ export function AllListings() {
                                             <TableCell className="text-sm">
                                                 {listing.sellerName}
                                             </TableCell>
-                                            <TableCell className="font-display text-bordo">
-                                                {formatPrice(listing.priceCents)}
+                                            <TableCell>
+                                                <Price cents={listing.priceCents} className="text-bordo" />
                                             </TableCell>
                                             <TableCell className="text-sm">
                                                 {formatCondition(listing.condition)}
