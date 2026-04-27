@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea'
 import * as adminApi from '@/api/admin'
 import type { AdminListing } from '@/api/admin'
 import { Price } from '@/components/Price'
+import { Ornament } from '@/components/Ornament'
 import { formatCondition } from '@/lib/format'
 
 export function ModerationQueue() {
@@ -59,19 +60,25 @@ export function ModerationQueue() {
 
     return (
         <>
+            <div>
+                <h2 className="type-headline text-xl text-tinta">fila de moderação</h2>
+                <Ornament variant="rule" className="mt-2 mb-6" />
+            </div>
             <div className="grid gap-4">
                 {listings.map((listing) => (
                     <div
                         key={listing.id}
-                        className="rounded-lg bg-papel-profundo p-5 ring-1 ring-cinza-borda"
+                        className="rounded-lg bg-papel-profundo p-5 ring-1 ring-cinza-borda/60"
                     >
                         <div className="flex gap-4">
                             {listing.bookCoverImageUrl && (
-                                <img
-                                    src={listing.bookCoverImageUrl}
-                                    alt={listing.bookTitle}
-                                    className="h-32 w-24 shrink-0 rounded object-cover"
-                                />
+                                <div className="h-32 w-24 shrink-0 overflow-hidden rounded bg-papel-profundo dark:bg-moldura-capa">
+                                    <img
+                                        src={listing.bookCoverImageUrl}
+                                        alt={listing.bookTitle}
+                                        className="h-full w-full object-cover"
+                                    />
+                                </div>
                             )}
                             <div className="min-w-0 flex-1">
                                 <h3 className="font-display text-lg font-medium text-tinta">

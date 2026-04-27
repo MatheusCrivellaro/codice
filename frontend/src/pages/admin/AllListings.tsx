@@ -17,6 +17,7 @@ import {
 import * as adminApi from '@/api/admin'
 import type { AdminListing, ListingStatus } from '@/api/admin'
 import { Price } from '@/components/Price'
+import { Ornament } from '@/components/Ornament'
 import { formatCondition, formatListingStatus } from '@/lib/format'
 
 const statusFilters: { value: string; label: string }[] = [
@@ -137,6 +138,11 @@ export function AllListings() {
 
     return (
         <>
+            <div>
+                <h2 className="type-headline text-xl text-tinta">todas as ofertas</h2>
+                <Ornament variant="rule" className="mt-2 mb-6" />
+            </div>
+
             <Tabs value={filter} onValueChange={setFilter}>
                 <TabsList>
                     {statusFilters.map((sf) => (
@@ -155,17 +161,17 @@ export function AllListings() {
                         Nenhuma oferta neste filtro.
                     </p>
                 ) : (
-                    <div className="rounded-md border border-cinza-borda">
+                    <div className="rounded-md border border-cinza-borda/60">
                         <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead>Livro</TableHead>
-                                    <TableHead>Vendedor</TableHead>
-                                    <TableHead>Preço</TableHead>
-                                    <TableHead>Conservação</TableHead>
-                                    <TableHead>Status</TableHead>
-                                    <TableHead>Criado em</TableHead>
-                                    <TableHead className="w-[120px]">Ações</TableHead>
+                                    <TableHead className="type-uiserif">Livro</TableHead>
+                                    <TableHead className="type-uiserif">Vendedor</TableHead>
+                                    <TableHead className="type-uiserif">Preço</TableHead>
+                                    <TableHead className="type-uiserif">Conservação</TableHead>
+                                    <TableHead className="type-uiserif">Status</TableHead>
+                                    <TableHead className="type-uiserif">Criado em</TableHead>
+                                    <TableHead className="type-uiserif w-[120px]">Ações</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
