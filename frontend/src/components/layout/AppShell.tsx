@@ -24,9 +24,10 @@ const THEME_OPTIONS: { value: Theme; label: string }[] = [
 function MobileThemeSection() {
     const { theme, setTheme } = useTheme()
     return (
-        <div className="mt-4 border-t border-cinza-borda pt-4">
+        <div className="mt-4">
+            <Ornament variant="rule" tone="borda" className="mb-4" />
             <p className="mb-2 px-2 font-ui text-xs font-medium uppercase tracking-wider text-cinza-quente">
-                Tema
+                tema
             </p>
             <div className="flex gap-2 px-2">
                 {THEME_OPTIONS.map((opt) => (
@@ -86,7 +87,7 @@ export function AppShell() {
 
     return (
         <div className="flex min-h-screen flex-col">
-            <header className="border-b border-cinza-borda bg-papel">
+            <header className="bg-papel">
                 <div className="container-codice flex h-16 items-center gap-6">
                     <Link
                         to="/"
@@ -110,22 +111,31 @@ export function AppShell() {
                     </form>
 
                     {/* Nav — desktop */}
-                    <nav className="ml-auto hidden items-center gap-3 md:flex">
+                    <nav className="ml-auto hidden items-center gap-5 md:flex">
                         <ThemeToggle />
+                        <Link
+                            to="/buscar"
+                            className="font-ui text-sm font-medium tracking-[0.02em] text-tinta-leve hover:text-tinta"
+                        >
+                            acervo
+                        </Link>
                         {isAuthenticated ? (
                             <>
                                 {user?.profileType !== 'BUYER' && (
-                                    <Button variant="ghost" size="sm" asChild>
-                                        <Link to="/vender">Anunciar</Link>
-                                    </Button>
+                                    <Link
+                                        to="/vender"
+                                        className="font-ui text-sm font-medium tracking-[0.02em] text-tinta-leve hover:text-tinta"
+                                    >
+                                        anunciar
+                                    </Link>
                                 )}
                                 <Link
                                     to="/conversas"
-                                    className="relative font-ui text-sm text-tinta-leve hover:text-tinta"
+                                    className="relative font-ui text-sm font-medium tracking-[0.02em] text-tinta-leve hover:text-tinta"
                                 >
-                                    Conversas
+                                    conversas
                                     {totalUnread > 0 && (
-                                        <span className="absolute -top-1.5 -right-2.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-bordo px-1 font-ui text-[10px] font-medium text-papel">
+                                        <span className="absolute -top-1.5 -right-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-bordo px-1 font-ui text-[10px] font-medium tracking-normal text-papel">
                                             {totalUnread}
                                         </span>
                                     )}
@@ -133,28 +143,28 @@ export function AppShell() {
                                 {user?.isAdmin && (
                                     <Link
                                         to="/admin"
-                                        className="font-ui text-sm text-tinta-leve hover:text-tinta"
+                                        className="font-ui text-sm font-medium tracking-[0.02em] text-tinta-leve hover:text-tinta"
                                     >
-                                        Painel
+                                        painel
                                     </Link>
                                 )}
                                 <Link
                                     to="/perfil"
-                                    className="font-ui text-sm text-tinta-leve hover:text-tinta"
+                                    className="font-ui text-sm font-medium tracking-[0.02em] text-tinta-leve hover:text-tinta"
                                 >
                                     {user?.name}
                                 </Link>
                                 <Button variant="ghost" size="sm" onClick={logout}>
-                                    Sair
+                                    sair
                                 </Button>
                             </>
                         ) : (
                             <>
                                 <Button variant="ghost" size="sm" asChild>
-                                    <Link to="/login">Entrar</Link>
+                                    <Link to="/login">entrar</Link>
                                 </Button>
                                 <Button variant="outline" size="sm" asChild>
-                                    <Link to="/cadastro">Criar conta</Link>
+                                    <Link to="/cadastro">criar conta</Link>
                                 </Button>
                             </>
                         )}
@@ -186,13 +196,13 @@ export function AppShell() {
                                 />
                             </form>
 
-                            <nav className="mt-2 flex flex-col">
+                            <nav className="mt-4 flex flex-col">
                                 <Link
                                     to="/buscar"
                                     onClick={closeMenu}
-                                    className="rounded-md px-2 py-3 font-ui text-sm text-tinta hover:bg-papel-profundo"
+                                    className="rounded-md px-2 py-3 font-ui text-sm font-medium tracking-[0.02em] text-tinta hover:bg-papel-profundo"
                                 >
-                                    Acervo
+                                    acervo
                                 </Link>
                                 {isAuthenticated ? (
                                     <>
@@ -200,19 +210,19 @@ export function AppShell() {
                                             <Link
                                                 to="/vender"
                                                 onClick={closeMenu}
-                                                className="rounded-md px-2 py-3 font-ui text-sm text-tinta hover:bg-papel-profundo"
+                                                className="rounded-md px-2 py-3 font-ui text-sm font-medium tracking-[0.02em] text-tinta hover:bg-papel-profundo"
                                             >
-                                                Anunciar
+                                                anunciar
                                             </Link>
                                         )}
                                         <Link
                                             to="/conversas"
                                             onClick={closeMenu}
-                                            className="flex items-center justify-between rounded-md px-2 py-3 font-ui text-sm text-tinta hover:bg-papel-profundo"
+                                            className="flex items-center justify-between rounded-md px-2 py-3 font-ui text-sm font-medium tracking-[0.02em] text-tinta hover:bg-papel-profundo"
                                         >
-                                            <span>Conversas</span>
+                                            <span>conversas</span>
                                             {totalUnread > 0 && (
-                                                <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-bordo px-1.5 font-ui text-[10px] font-medium text-papel">
+                                                <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-bordo px-1 font-ui text-[10px] font-medium tracking-normal text-papel">
                                                     {totalUnread}
                                                 </span>
                                             )}
@@ -221,17 +231,17 @@ export function AppShell() {
                                             <Link
                                                 to="/admin"
                                                 onClick={closeMenu}
-                                                className="rounded-md px-2 py-3 font-ui text-sm text-tinta hover:bg-papel-profundo"
+                                                className="rounded-md px-2 py-3 font-ui text-sm font-medium tracking-[0.02em] text-tinta hover:bg-papel-profundo"
                                             >
-                                                Painel
+                                                painel
                                             </Link>
                                         )}
                                         <Link
                                             to="/perfil"
                                             onClick={closeMenu}
-                                            className="rounded-md px-2 py-3 font-ui text-sm text-tinta hover:bg-papel-profundo"
+                                            className="rounded-md px-2 py-3 font-ui text-sm font-medium tracking-[0.02em] text-tinta hover:bg-papel-profundo"
                                         >
-                                            Perfil
+                                            perfil
                                         </Link>
                                     </>
                                 ) : (
@@ -239,16 +249,16 @@ export function AppShell() {
                                         <Link
                                             to="/login"
                                             onClick={closeMenu}
-                                            className="rounded-md px-2 py-3 font-ui text-sm text-tinta hover:bg-papel-profundo"
+                                            className="rounded-md px-2 py-3 font-ui text-sm font-medium tracking-[0.02em] text-tinta hover:bg-papel-profundo"
                                         >
-                                            Entrar
+                                            entrar
                                         </Link>
                                         <Link
                                             to="/cadastro"
                                             onClick={closeMenu}
-                                            className="rounded-md px-2 py-3 font-ui text-sm text-tinta hover:bg-papel-profundo"
+                                            className="rounded-md px-2 py-3 font-ui text-sm font-medium tracking-[0.02em] text-tinta hover:bg-papel-profundo"
                                         >
-                                            Criar conta
+                                            criar conta
                                         </Link>
                                     </>
                                 )}
@@ -257,19 +267,21 @@ export function AppShell() {
                             <MobileThemeSection />
 
                             {isAuthenticated && (
-                                <div className="mt-auto border-t border-cinza-borda pt-4">
+                                <div className="mt-auto">
+                                    <Ornament variant="rule" tone="borda" className="mb-4" />
                                     <Button
                                         variant="outline"
                                         className="w-full"
                                         onClick={handleLogout}
                                     >
-                                        Sair
+                                        sair
                                     </Button>
                                 </div>
                             )}
                         </SheetContent>
                     </Sheet>
                 </div>
+                <Ornament variant="double-rule" tone="borda" />
             </header>
 
             <main className="flex-1">

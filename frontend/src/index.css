@@ -225,14 +225,14 @@
         padding-right: 1.5rem;
     }
 
-    /* Marca \"codice\" — Fraunces 400 puro com eixo optico alto e tracking
-       levemente aberto. Diferencia o nome da marca de qualquer outro H1
-       no site. Usar somente no nome literal \"codice\". */
+    /* Marca \"codice\" — Fraunces 500 com eixo optico alto e tracking
+       +30 unidades (Brief Logo cap. 6). Diferencia o nome da marca de
+       qualquer outro H1. Usar somente no nome literal \"codice\". */
     .brand-codice {
         font-family: var(--font-display);
-        font-weight: 400;
+        font-weight: 500;
         font-variation-settings: 'opsz' 144;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.03em;
     }
 
     /* Grid de cards do acervo — 2 colunas mobile, 3 tablet, 4 desktop,
