@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Ornament } from '@/components/Ornament'
 import { Price } from '@/components/Price'
+import { LivroDosLivrosSeal } from '@/components/LivroDosLivrosSeal'
 import { useThreads } from '@/hooks/useThreads'
 import { usePageTitle } from '@/hooks/usePageTitle'
 import { formatRelativeDate, formatCondition } from '@/lib/format'
@@ -55,7 +56,8 @@ export function ConversationsPage() {
             <h1 className="mb-6 font-display text-3xl text-tinta">Conversas</h1>
 
             {threads.length === 0 ? (
-                <div className="py-16 text-center">
+                <div className="flex flex-col items-center py-16 text-center">
+                    <LivroDosLivrosSeal size={96} className="mb-6" />
                     <p className="font-body text-tinta-leve">
                         Nenhuma conversa ainda. Quando você manifestar interesse em um livro, a conversa aparecerá aqui.
                     </p>

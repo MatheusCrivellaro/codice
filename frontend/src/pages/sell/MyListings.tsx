@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Price } from '@/components/Price'
+import { LivroDosLivrosSeal } from '@/components/LivroDosLivrosSeal'
 import { formatCondition, formatListingStatus } from '@/lib/format'
 import { usePageTitle } from '@/hooks/usePageTitle'
 import * as listingsApi from '@/api/listings'
@@ -37,7 +38,8 @@ export function MyListings() {
             {isLoading ? (
                 <p className="text-sm text-tinta-leve">Folheando suas ofertas...</p>
             ) : !data || data.content.length === 0 ? (
-                <div className="py-16 text-center">
+                <div className="flex flex-col items-center py-16 text-center">
+                    <LivroDosLivrosSeal size={96} className="mb-6" />
                     <p className="font-body text-tinta-leve">Nenhuma oferta ainda. Que tal anunciar o primeiro livro da sua estante?</p>
                     <Button asChild className="mt-4">
                         <Link to="/vender/novo">Anunciar um livro</Link>

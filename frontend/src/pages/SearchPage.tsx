@@ -11,6 +11,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/s
 import { BookCard } from '@/components/BookCard'
 import { Ornament } from '@/components/Ornament'
 import { AreaEmblem } from '@/components/AreaEmblem'
+import { LivroDosLivrosSeal } from '@/components/LivroDosLivrosSeal'
 import { useBookSearch } from '@/hooks/useBookSearch'
 import { useAcademicAreas } from '@/hooks/useAcademicAreas'
 import { useActiveStates } from '@/hooks/useActiveStates'
@@ -279,7 +280,8 @@ export function SearchPage() {
                             </p>
                         </div>
                     ) : !data || data.content.length === 0 ? (
-                        <div className="py-16 text-center">
+                        <div className="flex flex-col items-center py-16 text-center">
+                            <LivroDosLivrosSeal size={96} className="mb-6" />
                             <p className="font-body text-tinta-leve">
                                 Nenhum livro com esse título no acervo agora.
                             </p>
