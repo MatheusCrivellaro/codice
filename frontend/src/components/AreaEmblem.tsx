@@ -48,12 +48,29 @@ function areaToKey(area: string): AreaKey {
         .toLowerCase()
         .normalize('NFD')
         .replace(/[̀-ͯ]/g, '')
-    if (normalized.startsWith('literatura')) return 'literatura'
+    if (
+        normalized.startsWith('literatura') ||
+        normalized.startsWith('classico') ||
+        normalized.startsWith('naturalismo') ||
+        normalized.startsWith('romantismo') ||
+        normalized.startsWith('modernismo') ||
+        normalized.startsWith('realismo') ||
+        normalized.startsWith('poesia') ||
+        normalized.startsWith('ficcao')
+    ) return 'literatura'
     if (normalized.startsWith('filosofia')) return 'filosofia'
-    if (normalized.startsWith('sociologia') || normalized.startsWith('antropologia')) return 'sociologia'
+    if (
+        normalized.startsWith('sociologia') ||
+        normalized.startsWith('antropologia') ||
+        normalized.startsWith('ciencias sociais')
+    ) return 'sociologia'
     if (normalized.startsWith('direito')) return 'direito'
     if (normalized.startsWith('historia')) return 'historia'
-    if (normalized.startsWith('letras') || normalized.startsWith('critica')) return 'letras'
+    if (
+        normalized.startsWith('letras') ||
+        normalized.startsWith('critica') ||
+        normalized.startsWith('linguistica')
+    ) return 'letras'
     if (normalized.startsWith('psicologia') || normalized.startsWith('psicanalise')) return 'psicologia'
     if (normalized.startsWith('educacao') || normalized.startsWith('pedagogia')) return 'educacao'
     return 'default'

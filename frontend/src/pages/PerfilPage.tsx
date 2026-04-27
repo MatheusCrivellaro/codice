@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Ornament } from '@/components/Ornament'
-import { formatProfileType } from '@/lib/format'
+import { formatProfileType, formatCatalogNumber } from '@/lib/format'
 import { usePageTitle } from '@/hooks/usePageTitle'
 
 function getInitials(name: string): string {
@@ -44,6 +44,10 @@ export function PerfilPage() {
                             <span className="text-tinta">{formatProfileType(user.profileType)}</span>
                         </div>
                     </div>
+
+                    <p className="text-right font-ui text-[11px] tabular-nums tracking-[0.15em] text-cinza-quente">
+                        Nº {formatCatalogNumber(user.id)}
+                    </p>
 
                     <Button variant="outline" onClick={logout}>
                         Sair

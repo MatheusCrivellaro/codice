@@ -10,7 +10,7 @@ interface AcademicAreaBadgeProps {
 export function AcademicAreaBadge({ area, clickable = false }: AcademicAreaBadgeProps) {
     if (clickable) {
         return (
-            <Badge asChild variant="academic-area" className="transition-colors hover:border-bordo/30 hover:text-bordo">
+            <Badge asChild variant="academic-area" className="font-serif italic transition-colors hover:border-bordo/30 hover:text-bordo">
                 <Link to={`/buscar?area=${encodeURIComponent(area)}`}>
                     <AreaEmblem area={area} size={12} className="text-bordo/70" />
                     {area}
@@ -20,7 +20,7 @@ export function AcademicAreaBadge({ area, clickable = false }: AcademicAreaBadge
     }
 
     return (
-        <Badge variant="academic-area">
+        <Badge variant="academic-area" className="font-serif italic">
             <AreaEmblem area={area} size={12} className="text-bordo/70" />
             {area}
         </Badge>

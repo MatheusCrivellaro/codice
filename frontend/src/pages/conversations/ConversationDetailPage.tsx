@@ -8,6 +8,7 @@ import { MessageBubble } from '@/components/chat/MessageBubble'
 import { DateSeparator } from '@/components/chat/DateSeparator'
 import { MessageInput } from '@/components/chat/MessageInput'
 import { Price } from '@/components/Price'
+import { Ornament } from '@/components/Ornament'
 import { useThreadMessages } from '@/hooks/useThreadMessages'
 import { useThreads } from '@/hooks/useThreads'
 import { usePageTitle } from '@/hooks/usePageTitle'
@@ -85,7 +86,7 @@ export function ConversationDetailPage() {
     return (
         <div className="mx-auto flex h-[calc(100vh-4rem)] max-w-[680px] flex-col">
             {/* Header */}
-            <div className="flex items-center gap-3 border-b border-cinza-borda px-4 py-3">
+            <div className="flex items-center gap-3 px-4 py-3">
                 <Button variant="ghost" size="sm" onClick={() => navigate('/conversas')}>
                     ←
                 </Button>
@@ -117,6 +118,7 @@ export function ConversationDetailPage() {
                     <Skeleton className="h-10 w-48" />
                 )}
             </div>
+            <Ornament variant="double-rule" tone="borda" />
 
             {/* Messages area */}
             <div ref={scrollContainerRef} className="flex-1 overflow-y-auto px-4 py-4">
