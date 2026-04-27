@@ -2,6 +2,7 @@ import { useAuth } from '@/contexts/auth-context'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
+import { Ornament } from '@/components/Ornament'
 import { formatProfileType } from '@/lib/format'
 import { usePageTitle } from '@/hooks/usePageTitle'
 
@@ -32,6 +33,7 @@ export function PerfilPage() {
                     <CardTitle className="text-2xl">{user.name}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-5">
+                    <Ornament variant="fleuron" className="mx-auto max-w-[180px]" />
                     <div className="space-y-2 font-ui text-sm">
                         <div className="flex justify-between">
                             <span className="text-cinza-quente">E-mail</span>

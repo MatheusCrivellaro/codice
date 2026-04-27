@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Ornament } from '@/components/Ornament'
+import { Price } from '@/components/Price'
 import { useThreads } from '@/hooks/useThreads'
 import { usePageTitle } from '@/hooks/usePageTitle'
 import { formatRelativeDate, formatCondition } from '@/lib/format'
@@ -27,7 +29,8 @@ export function ConversationsPage() {
     if (isLoading) {
         return (
             <div className="container-codice max-w-[680px] py-8">
-                <h1 className="mb-6 font-display text-3xl text-tinta">Conversas</h1>
+                <h1 className="font-display text-3xl text-tinta">Conversas</h1>
+                <Ornament variant="rule" className="mt-3 mb-6" />
                 <div className="space-y-3">
                     {Array.from({ length: 4 }).map((_, i) => (
                         <Skeleton key={i} className="h-24 w-full rounded-lg" />
@@ -92,7 +95,7 @@ export function ConversationsPage() {
                                                 {thread.bookTitle}
                                             </p>
                                             <p className="font-ui text-xs text-tinta-leve">
-                                                <span className="text-bordo">{thread.listingPriceFormatted}</span> — {formatCondition(thread.listingCondition)}
+                                                <Price cents={thread.listingPriceCents} className="text-[13px] text-bordo" /> — {formatCondition(thread.listingCondition)}
                                             </p>
                                         </div>
                                         <div className="flex shrink-0 items-center gap-1.5">

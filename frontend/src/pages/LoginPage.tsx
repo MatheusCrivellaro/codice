@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
+import { Ornament } from '@/components/Ornament'
 import { usePageTitle } from '@/hooks/usePageTitle'
 
 export function LoginPage() {
@@ -52,6 +53,7 @@ export function LoginPage() {
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
+                    <Ornament variant="rule" className="mx-auto mb-6 max-w-[140px]" />
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                         <div className="space-y-1.5">
                             <Label htmlFor="email">E-mail</Label>

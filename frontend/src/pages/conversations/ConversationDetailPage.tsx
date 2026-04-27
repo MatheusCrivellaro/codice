@@ -7,6 +7,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { MessageBubble } from '@/components/chat/MessageBubble'
 import { DateSeparator } from '@/components/chat/DateSeparator'
 import { MessageInput } from '@/components/chat/MessageInput'
+import { Price } from '@/components/Price'
 import { useThreadMessages } from '@/hooks/useThreadMessages'
 import { useThreads } from '@/hooks/useThreads'
 import { usePageTitle } from '@/hooks/usePageTitle'
@@ -108,7 +109,7 @@ export function ConversationDetailPage() {
                                 {thread.bookTitle}
                             </Link>
                             <p className="font-ui text-xs text-tinta-leve">
-                                <span className="text-bordo">{thread.listingPriceFormatted}</span> — {formatCondition(thread.listingCondition)} — {thread.counterpartName}
+                                <Price cents={thread.listingPriceCents} className="text-[13px] text-bordo" /> — {formatCondition(thread.listingCondition)} — {thread.counterpartName}
                             </p>
                         </div>
                     </>

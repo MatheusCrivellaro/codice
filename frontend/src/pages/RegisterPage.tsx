@@ -20,6 +20,7 @@ import {
     DialogDescription,
     DialogTrigger,
 } from '@/components/ui/dialog'
+import { Ornament } from '@/components/Ornament'
 import { usePageTitle } from '@/hooks/usePageTitle'
 
 const PROFILE_OPTIONS = [
@@ -81,6 +82,7 @@ export function RegisterPage() {
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
+                    <Ornament variant="rule" className="mx-auto mb-6 max-w-[140px]" />
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                         <div className="space-y-1.5">
                             <Label htmlFor="name">Nome</Label>

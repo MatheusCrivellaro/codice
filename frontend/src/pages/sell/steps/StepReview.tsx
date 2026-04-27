@@ -1,8 +1,9 @@
 ﻿import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import { Price } from '@/components/Price'
 import { formatCondition } from '@/lib/format'
-import { PHOTO_TYPES } from '@/lib/schemas/listing'
+import { PHOTO_TYPES, parseReaisToCents } from '@/lib/schemas/listing'
 import type { WizardBookData, WizardDetailsData, WizardPhotoData } from '@/pages/sell/CreateListingWizard'
 
 interface StepReviewProps {
@@ -54,7 +55,7 @@ export function StepReview({ bookData, detailsData, photosData, onSubmit, onBack
                         <div className="mt-2 space-y-1">
                             <p className="text-sm">
                                 <span className="text-tinta-leve">Preço: </span>
-                                <span className="font-display text-bordo">R$ {detailsData.priceReais}</span>
+                                <Price cents={parseReaisToCents(detailsData.priceReais)} className="text-bordo" />
                             </p>
                             <p className="text-sm">
                                 <span className="text-tinta-leve">Conservação: </span>
