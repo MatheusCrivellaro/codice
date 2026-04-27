@@ -137,9 +137,10 @@
     /* Mapeamento shadcn para modo escuro */
     --background: oklch(0.156 0.008 50);            /* fundo-escuro #1A1714 */
     --foreground: oklch(0.901 0.022 80);            /* papel-escuro #E8E0D2 */
-    --card: oklch(0.196 0.009 50);
+    --card: oklch(0.18 0.009 50);                   /* mais perto do fundo no dark
+                                                       — capa fechada nao brilha sob abajur */
     --card-foreground: oklch(0.901 0.022 80);
-    --popover: oklch(0.196 0.009 50);
+    --popover: oklch(0.18 0.009 50);
     --popover-foreground: oklch(0.901 0.022 80);
     --primary: oklch(0.677 0.084 73);               /* dourado #B89968 */
     --primary-foreground: oklch(0.156 0.008 50);
