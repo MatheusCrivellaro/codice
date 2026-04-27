@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
+import { Ornament } from '@/components/Ornament'
 import { PhotoUploader, type UploadedPhoto } from '@/components/PhotoUploader'
 import type { WizardPhotoData } from '@/pages/sell/CreateListingWizard'
 
@@ -32,7 +33,10 @@ export function StepPhotos({ initialData, onComplete, onBack }: StepPhotosProps)
 
     return (
         <div className="space-y-6">
-            <h2 className="font-display text-xl text-tinta">Fotos do exemplar</h2>
+            <div>
+                <h2 className="type-headline text-xl text-tinta">fotos do exemplar</h2>
+                <Ornament variant="rule" className="mt-2" />
+            </div>
             <p className="text-sm text-tinta-leve">
                 Fotos nítidas e bem iluminadas mostram o livro como ele é — e ajudam a encontrar quem está procurando.
             </p>

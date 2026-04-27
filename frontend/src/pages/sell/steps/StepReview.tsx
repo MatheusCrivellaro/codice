@@ -2,6 +2,7 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Price } from '@/components/Price'
+import { Ornament } from '@/components/Ornament'
 import { formatCondition } from '@/lib/format'
 import { PHOTO_TYPES, parseReaisToCents } from '@/lib/schemas/listing'
 import type { WizardBookData, WizardDetailsData, WizardPhotoData } from '@/pages/sell/CreateListingWizard'
@@ -28,7 +29,10 @@ export function StepReview({ bookData, detailsData, photosData, onSubmit, onBack
 
     return (
         <div className="space-y-6">
-            <h2 className="font-display text-xl text-tinta">Confira antes de publicar</h2>
+            <div>
+                <h2 className="type-headline text-xl text-tinta">confira antes de publicar</h2>
+                <Ornament variant="rule" className="mt-2" />
+            </div>
 
             <Card>
                 <CardContent className="pt-4 space-y-4">

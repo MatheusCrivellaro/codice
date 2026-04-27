@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Ornament } from '@/components/Ornament'
 import { listingDetailsSchema, CONDITIONS, type ListingDetailsFormData } from '@/lib/schemas/listing'
 import type { WizardDetailsData } from '@/pages/sell/CreateListingWizard'
 
@@ -56,7 +57,10 @@ export function StepDetails({ initialData, onComplete, onBack }: StepDetailsProp
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <h2 className="font-display text-xl text-tinta">Detalhes da oferta</h2>
+            <div>
+                <h2 className="type-headline text-xl text-tinta">detalhes da oferta</h2>
+                <Ornament variant="rule" className="mt-2" />
+            </div>
 
             <div className="space-y-2">
                 <Label htmlFor="priceReais">Preço *</Label>
