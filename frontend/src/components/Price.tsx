@@ -18,12 +18,23 @@ const SIZE_CLASS: Record<PriceSize, string> = {
     xl: 'text-2xl',
 }
 
+// Eixo optico do Fraunces: preco grande (xl) usa opsz 144 (display);
+// preços pequenos usam opsz 14 (UI). Brief V03 §3.3.
+const SIZE_AXIS: Record<PriceSize, string> = {
+    sm: 'type-uiserif',
+    md: 'type-uiserif',
+    lg: 'type-uiserif',
+    xl: 'type-display',
+}
+
 export function Price({ cents, className, size, asterisk }: PriceProps) {
     const { currency, number } = formatPriceParts(cents)
+    const axis = size ? SIZE_AXIS[size] : 'type-uiserif'
     return (
         <span
             className={cn(
-                'inline-flex items-baseline font-display font-normal',
+                'inline-flex items-baseline',
+                axis,
                 size && SIZE_CLASS[size],
                 className
             )}
@@ -36,7 +47,7 @@ export function Price({ cents, className, size, asterisk }: PriceProps) {
                     ∗
                 </span>
             )}
-            <span className="mr-[0.18em] text-[0.65em] font-normal tracking-[0.05em]">
+            <span className="type-uiserif mr-[0.18em] text-[0.65em] tracking-[0.05em]">
                 {currency}
             </span>
             <span className="tabular-nums">{number}</span>

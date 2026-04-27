@@ -228,6 +228,32 @@
         padding-right: 1.5rem;
     }
 
+    /* Eixo optico variavel do Fraunces — uma familia, tres aparencias.
+       Brief V03 §3.3: o opsz alto vira \"capa de livro\"; o opsz medio
+       vira subtitulo de secao; o opsz baixo vira UI tipografica. */
+
+    /* Display: titulo de capa de livro. Use em H1, hero, capitular. */
+    .type-display {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-variation-settings: 'opsz' 144;
+    }
+
+    /* Headline: subtitulo de secao. Use em H2, H3, nome de bloco. */
+    .type-headline {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-variation-settings: 'opsz' 72;
+    }
+
+    /* UI serifada: tipografia pequena com optica adequada. Use em
+       running head, labels editoriais, datas marginais. */
+    .type-uiserif {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-variation-settings: 'opsz' 14;
+    }
+
     /* Marca \"codice\" — Fraunces 500 com eixo optico alto e tracking
        +30 unidades (Brief Logo cap. 6). Diferencia o nome da marca de
        qualquer outro H1. Usar somente no nome literal \"codice\". */

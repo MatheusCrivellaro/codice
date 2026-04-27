@@ -150,7 +150,7 @@ export function BookPage() {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                    <p className="font-heading text-[13px] italic tracking-[0.08em] text-cinza-quente">
+                    <p className="type-uiserif text-[13px] font-normal italic tracking-[0.08em] text-cinza-quente">
                         {book.slug}
                     </p>
                     <H1 className="mt-1 text-3xl md:text-4xl">{book.title}</H1>
