@@ -71,7 +71,7 @@ export function Home() {
                 </div>
 
                 {booksLoading ? (
-                    <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
+                    <div className="grid-acervo">
                         {Array.from({ length: 8 }).map((_, i) => (
                             <div key={i} className="space-y-2">
                                 <Skeleton className="aspect-[2/3] w-full rounded" />
@@ -81,7 +81,7 @@ export function Home() {
                         ))}
                     </div>
                 ) : booksData && booksData.content.length > 0 ? (
-                    <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
+                    <div className="grid-acervo">
                         {booksData.content.map((book) => (
                             <BookCard key={book.id} book={book} />
                         ))}

@@ -225,6 +225,26 @@
         padding-right: 1.5rem;
     }
 
+    /* Grid de cards do acervo — 2 colunas mobile, 3 tablet, 4 desktop,
+       gap 24px. Usado em Home, SearchPage e qualquer listagem de livros. */
+    .grid-acervo {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (min-width: 768px) {
+        .grid-acervo {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .grid-acervo {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+    }
+
     /* Capitular iluminada — primeira letra de paragrafo editorial.
        Fraunces eixo optico alto, ~3 linhas de altura, bordo no light /
        dourado no dark via token. */

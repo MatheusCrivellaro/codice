@@ -7,7 +7,6 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Separator } from '@/components/ui/separator'
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { BookCard } from '@/components/BookCard'
 import { Ornament } from '@/components/Ornament'
@@ -121,7 +120,7 @@ export function SearchPage() {
                             </button>
                         )}
                     </div>
-                    <Separator className="bg-cinza-borda/60" />
+                    <Ornament variant="rule" className="opacity-40" />
                 </>
             )}
 
@@ -153,7 +152,7 @@ export function SearchPage() {
                 </div>
             </div>
 
-            <Separator className="bg-cinza-borda/60" />
+            <Ornament variant="rule" className="opacity-40" />
 
             <div>
                 <h3 className={FILTER_LABEL}>Conservação mínima</h3>
@@ -172,7 +171,7 @@ export function SearchPage() {
 
             {states.length > 0 && (
                 <>
-                    <Separator className="bg-cinza-borda/60" />
+                    <Ornament variant="rule" className="opacity-40" />
                     <div>
                         <h3 className={FILTER_LABEL}>Localização</h3>
                         <Select
@@ -262,7 +261,7 @@ export function SearchPage() {
                     <Ornament variant="rule" className="mb-8" />
 
                     {isLoading ? (
-                        <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
+                        <div className="grid-acervo">
                             {Array.from({ length: 8 }).map((_, i) => (
                                 <div key={i} className="space-y-2">
                                     <Skeleton className="aspect-[2/3] w-full rounded" />
@@ -288,7 +287,7 @@ export function SearchPage() {
                         </div>
                     ) : (
                         <>
-                            <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
+                            <div className="grid-acervo">
                                 {data.content.map((book) => (
                                     <BookCard key={book.id} book={book} />
                                 ))}
