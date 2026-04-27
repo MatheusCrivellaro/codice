@@ -17,7 +17,7 @@ import { useBook } from '@/hooks/useBook'
 import { usePageTitle } from '@/hooks/usePageTitle'
 import { useAuth } from '@/contexts/auth-context'
 import { createInterest } from '@/api/interests'
-import { formatRelativeDate, formatCatalogNumber } from '@/lib/format'
+import { formatRelativeDate, formatCatalogNumber, formatEdition } from '@/lib/format'
 import type { ListingOfferResponse } from '@/api/books'
 
 // Substitui aspas retas (") por curvas tipograficas ("...") em texto
@@ -159,7 +159,11 @@ export function BookPage() {
                     <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-ui text-sm text-tinta-leve">
                         {book.publisher && <span>{book.publisher}</span>}
                         {book.publicationYear && <span>{book.publicationYear}</span>}
-                        {book.edition && <span>{book.edition}</span>}
+                        {book.edition && (
+                            <em className="font-serif font-normal italic">
+                                {formatEdition(book.edition)}
+                            </em>
+                        )}
                         {book.language && <span>{book.language}</span>}
                         {book.translator && (
                             <em className="font-serif font-normal italic">

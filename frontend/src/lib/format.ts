@@ -79,6 +79,22 @@ export function formatMessageDate(iso: string): string {
 }
 
 /**
+ * Normaliza valor de edicao para forma editorial: "42a ed." vira "42ª ed.",
+ * "2nd ed" vira "2ª ed.", e descricoes adicionais ("revisada", "ampliada")
+ * sao preservadas. Se o formato nao bater com o padrao reconhecido, devolve
+ * o valor original para nao quebrar entradas livres do catalogo.
+ */
+export function formatEdition(value: string): string {
+    const trimmed = value.trim()
+    const match = trimmed.match(/^(\d+)\s*(?:[aªº]|nd|st|rd|th)?\s*(?:edition|edição|ed\.?)?\s*(.*)$/i)
+    if (!match) return trimmed
+    const number = match[1]
+    const suffix = match[2].trim()
+    const base = `${number}ª ed.`
+    return suffix ? `${base} ${suffix}` : base
+}
+
+/**
  * Numero de catalogo curto derivado do UUID. Proxy editorial para a marca
  * de pagina de livro impresso ("No 0147"); nao representa numero sequencial
  * real — o backend so expoe UUID. Quatro digitos sao suficientes pra
