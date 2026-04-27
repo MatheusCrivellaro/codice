@@ -14,14 +14,14 @@ export function BookCard({ book }: BookCardProps) {
     return (
         <Link
             to={`/livro/${book.slug}`}
-            className="group block rounded transition-shadow hover:shadow-sm"
+            className="group block border-l-2 border-bordo/25 pl-3 transition-[transform,box-shadow] duration-[180ms] ease-out hover:translate-x-[2px] hover:shadow-[0_2px_4px_rgba(0,0,0,0.08)]"
         >
-            <div className="aspect-[2/3] w-full overflow-hidden rounded bg-papel-profundo">
+            <div className="aspect-[2/3] w-full overflow-hidden rounded-sm bg-papel-profundo">
                 {book.coverImageUrl ? (
                     <img
                         src={book.coverImageUrl}
                         alt={book.title}
-                        className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
+                        className="h-full w-full object-cover"
                         onError={(e) => {
                             e.currentTarget.style.display = 'none'
                         }}
